@@ -12,7 +12,7 @@ namespace delvers.Utilities
 
 		public static int GetRandomHp()
 		{
-			return Random.Next(5, 8);
+			return Random.Next(4, 6);
 		}
 
 		public static int GetRandomAttackValue()
