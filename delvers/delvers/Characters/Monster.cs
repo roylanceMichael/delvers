@@ -16,18 +16,18 @@ namespace delvers.Characters
 			this.Hp = Utilities.Randomizer.GetRandomHp();
 		}
 
-		public override void TakeTurn(IList<Player> players)
+		public override string TakeTurn(IList<Player> players)
 		{
 			if (this.Hp < 0)
 			{
-				return;
+				return string.Empty;
 			}
 
 			// get list of valid people to attack
 			var playersToAttack = players.Where(t => 
 				t.GetType() != typeof(Monster) &&
 				t.Hp > 0).ToList();
-			this.Turn.PerformTurn(playersToAttack, this);
+			return this.Turn.PerformTurn(playersToAttack, this);
 		}
 	}
 }

@@ -32,12 +32,12 @@
 			}
 		}
 
-		public virtual void TakeTurn(IList<Player> players)
+		public virtual string TakeTurn(IList<Player> players)
 		{
 			// if a player is at 0 hit points, we don't perform any actions
 			if (this.Hp == 0)
 			{
-				return;
+				return string.Empty;
 			}
 
 			// select the players that aren't me
@@ -45,7 +45,7 @@
 				player.GetType() == typeof(Monster) && 
 				player.Hp > 0).ToList();
 
-			this.Turn.PerformTurn(validPlayersToHit, this);
+			return this.Turn.PerformTurn(validPlayersToHit, this);
 		}
 
 		public override string ToString()

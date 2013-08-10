@@ -10,23 +10,23 @@ namespace delvers.Turns
 
 	public class AttackOtherPlayersForRandomAmount : Turn
 	{
-		public override void PerformTurn(IList<Player> players, Player performingPlayer)
+		public override string PerformTurn(IList<Player> players, Player performingPlayer)
 		{
 			// pick a random player
 			if (!players.Any())
 			{
-				return;
+				return string.Empty;
 			}
 
 			var randomIdx = Utilities.Randomizer.GetRandomValue(0, players.Count);
 
 			var randomAttack = Utilities.Randomizer.GetRandomAttackValue();
+			players[randomIdx].TakeDamage(randomAttack);
 
-			Console.WriteLine("\t{0} was attacked for {1} by {2}!!!!!", 
+			return string.Format("\t{0} was attacked for {1} by {2}!!!!!", 
 				players[randomIdx].Name, 
 				randomAttack, 
 				performingPlayer.Name);
-			players[randomIdx].TakeDamage(randomAttack);
 		}
 	}
 }

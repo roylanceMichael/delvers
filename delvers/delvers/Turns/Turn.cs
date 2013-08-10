@@ -10,6 +10,6 @@ namespace delvers.Turns
 
 	public abstract class Turn
 	{
-		public abstract void PerformTurn(IList<Player> players, Player performingPlayer);
+		public abstract string PerformTurn(IList<Player> players, Player performingPlayer);
 	}
 }

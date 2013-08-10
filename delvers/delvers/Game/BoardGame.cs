@@ -16,24 +16,18 @@ namespace delvers.Game
 			this.players = players;
 		}
 
-		public void StartGame()
+		public IEnumerable<string> StartGame()
 		{
+			var log = new List<string>();
 			// do while game is still in progress
 			for (var i = 1; i < 6; i++)
 			{
 				// perform turn for all users
-				foreach (var player in this.players)
-				{
-					player.TakeTurn(this.players);
-				}
-
-				var reportPlayerStatus = new StringBuilder();
-				foreach (var player in this.players)
-				{
-					reportPlayerStatus.AppendLine(player.ToString());
-				}
-				Console.WriteLine(reportPlayerStatus.ToString());
+				log.AddRange(this.players.Select(player => player.TakeTurn(this.players)));
+				log.AddRange(this.players.Select(player => player.ToString()));
 			}
+
+			return log;
 		}
 	}
 }

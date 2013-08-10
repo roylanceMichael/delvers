@@ -1,0 +1,89 @@
+﻿@{
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+	<div class="row">
+		<div class="span12">
+			<form class="form-horizontal">
+				<fieldset>
+					<legend>delvers game</legend>
+
+					<div class="control-group">
+						<label class="control-label">number of players</label>
+						<div class="controls">
+							<input type="text" required="required" data-bind="value: selectedPlayerName" placeholder="player name">
+							<select data-bind="options: playerClasses, value: selectedPlayerClass">
+							</select>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn" data-bind="click: addPlayer">add player</button>
+						</div>
+					</div>
+
+					<div class="control-group">
+						<div class="controls">
+							<button type="submit" class="btn" data-bind="click: play">play</button>
+						</div>
+					</div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="span12" data-bind="foreach: currentPlayers">
+			<div class="span4">
+				<h2 data-bind="text: Name"></h2>
+				<h4 data-bind="text: PClass"></h4>
+			</div>
+		</div>
+	</div>
+
+	<div class="row" data-bind="foreach: gameResults">
+		<div class="span12" data-bind="text: $data" >
+		</div>
+	</div>
+</div>
+
+<script>
+	var viewModel = {
+		playerClasses: ["cleric", "wizard", "warrior", "thief", "archer", "paladin"],
+		selectedPlayerClass: ko.observable(""),
+		selectedPlayerName: ko.observable(""),
+		addPlayer: function () {
+			this.currentPlayers.push({ Name: this.selectedPlayerName(), PClass: this.selectedPlayerClass() });
+		},
+		play: function () {
+			// grab the number of players in the array
+			var sendData = {
+				players: this.currentPlayers()
+			};
+			$.ajax({
+				dataType: 'json',
+				url: "@Url.Action("Play")",
+				data: sendData,
+				type: "PUT",
+				success: function (response) {
+					refreshGameResults(response);
+				}
+			});
+
+		},
+		gameResults: ko.observableArray(),
+		currentPlayers: ko.observableArray()
+	};
+
+	var refreshGameResults = function(response) {
+		viewModel.gameResults.removeAll();
+		for (var i = 0; i < response.results.length; i++) {
+			viewModel.gameResults.push(response.results[i]);
+		}
+	};
+
+	ko.applyBindings(viewModel);
+</script>
