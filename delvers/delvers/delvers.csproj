@@ -44,6 +44,7 @@
     <Compile Include="Builders\CharacterBuilder.cs" />
     <Compile Include="Characters\Archer.cs" />
     <Compile Include="Characters\Cleric.cs" />
+    <Compile Include="Characters\HumanPlayer.cs" />
     <Compile Include="Characters\Monster.cs" />
     <Compile Include="Characters\Paladin.cs" />
     <Compile Include="Characters\Thief.cs" />
@@ -52,7 +53,12 @@
     <Compile Include="Game\BoardGame.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Turns\AttackOtherPlayersForRandomAmount.cs" />
+    <Compile Include="Turns\Attacking\IAttackAmount.cs" />
+    <Compile Include="Turns\Attacking\RandomAmount.cs" />
+    <Compile Include="Turns\Attacking\StaticAmount.cs" />
+    <Compile Include="Turns\Targetting\ITargetPlayer.cs" />
+    <Compile Include="Turns\Targetting\LowestHpPlayer.cs" />
+    <Compile Include="Turns\Targetting\RandomPlayer.cs" />
     <Compile Include="Turns\Turn.cs" />
     <Compile Include="Characters\Player.cs" />
     <Compile Include="Utilities\Randomizer.cs" />
@@ -60,6 +66,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

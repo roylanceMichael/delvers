@@ -44,7 +44,7 @@
 		</div>
 	</div>
 
-	<div class="row" data-bind="foreach: gameResults">
+	<div class="row" data-bind="foreach: gameResults" style="text-align: center;">
 		<div class="span12" data-bind="text: $data" >
 		</div>
 	</div>
@@ -84,6 +84,9 @@
 			viewModel.gameResults.push(response.results[i]);
 		}
 	};
+
+	viewModel.currentPlayers.push({ Name: "mike", PClass: "cleric" });
+	viewModel.currentPlayers.push({ Name: "jeff", PClass: "wizard" });
 
 	ko.applyBindings(viewModel);
 </script>

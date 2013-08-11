@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace delvers.Characters
+﻿namespace delvers.Characters
 {
 	using delvers.Turns;
 
-	public class Paladin : Player
+	public class Paladin : HumanPlayer
 	{
 		public Paladin(string name, Turn turn)
 			: base(name, turn)

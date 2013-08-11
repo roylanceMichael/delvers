@@ -27,7 +27,7 @@ namespace delvers.ui.Controllers
 			var gamePlayers = players.Select(player => characterBuilder.BuildCharacter(player["PClass"], player["Name"])).ToList();
 			for (var i = 0; i < players.Count; i++)
 			{
-				var monster = characterBuilder.BuildCharacter("monster", "monster" + i + 1);
+				var monster = characterBuilder.BuildCharacter("monster", "monster_" + (i + 1));
 				gamePlayers.Add(monster);
 			}
 

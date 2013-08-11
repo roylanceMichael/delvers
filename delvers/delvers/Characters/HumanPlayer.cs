@@ -5,12 +5,11 @@ namespace delvers.Characters
 {
 	using delvers.Turns;
 
-	public class Monster : Player
+	public class HumanPlayer : Player
 	{
-		public Monster(string name, Turn turn)
+		public HumanPlayer(string name, Turn turn)
 			: base(name, turn)
 		{
-			this.Hp = Utilities.Randomizer.GetRandomValue(15, 17);
 		}
 
 		public override string TakeTurn(IList<Player> players)
@@ -20,7 +19,8 @@ namespace delvers.Characters
 				return string.Empty;
 			}
 
-			return this.Turn.PerformTurn(FilterAttackablePlayers<HumanPlayer>(players), this);
+			// select the players that aren't me
+			return this.Turn.PerformTurn(FilterAttackablePlayers<Monster>(players), this);
 		}
 	}
 }

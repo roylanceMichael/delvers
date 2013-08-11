@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace delvers.Characters
+﻿namespace delvers.Characters
 {
 	using delvers.Turns;
 
-	public class Wizard : Player
+	public class Wizard : HumanPlayer
 	{
 		public Wizard(string name, Turn turn)
 			: base(name, turn)

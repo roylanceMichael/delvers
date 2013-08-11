@@ -1,9 +1,9 @@
 ﻿namespace delvers.Characters
 {
-	using System;
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using delvers.Utilities;
 	using delvers.Turns;
 
 	public class Player
@@ -12,6 +12,14 @@
 		{
 			this.Name = name;
 			this.Turn = turn;
+		}
+
+		protected static IList<Player> FilterAttackablePlayers<T>(IList<Player> players) where T: class 
+		{
+			return players
+				.Where(player => player.GetType().InheritsImplementsOrIs(typeof(T)) &&
+													player.IsAttackable)
+				.ToList();
 		}
 
 		public string Name { get; private set; }
@@ -34,18 +42,31 @@
 
 		public virtual string TakeTurn(IList<Player> players)
 		{
-			// if a player is at 0 hit points, we don't perform any actions
-			if (this.Hp == 0)
+			return string.Empty;
+		}
+
+		public bool CanTakeTurn
+		{
+			get
 			{
-				return string.Empty;
+				return this.Hp > 0;
 			}
+		}
 
-			// select the players that aren't me
-			var validPlayersToHit = players.Where(player => 
-				player.GetType() == typeof(Monster) && 
-				player.Hp > 0).ToList();
+		public bool IsAttackable
+		{
+			get
+			{
+				return this.Hp > 0;
+			}
+		}
 
-			return this.Turn.PerformTurn(validPlayersToHit, this);
+		public bool IsDead
+		{
+			get
+			{
+				return this.Hp == 0;
+			}
 		}
 
 		public override string ToString()
