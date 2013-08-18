@@ -15,14 +15,18 @@ namespace delvers
 			var builder = new CharacterBuilder();
 
 			var users = new List<Player> { 
-				builder.BuildCharacter("mike", "cleric"), 
-				builder.BuildCharacter("mike", "wizard"), 
-				builder.BuildCharacter("monster_1", "monster"),
-				builder.BuildCharacter("monster_2", "monster")};
+				builder.BuildCharacter("cleric", "mike"), 
+				builder.BuildCharacter("wizard", "jeff"), 
+				builder.BuildCharacter("monster", "monster_1"),
+				builder.BuildCharacter("monster", "monster_2")};
 
 			var boardGame = new BoardGame(users);
-			boardGame.StartGame();
+			var logs = boardGame.StartGame();
 
+			foreach (var log in logs)
+			{
+				Console.WriteLine(log);
+			}
 
 			Console.ReadLine();
 		}

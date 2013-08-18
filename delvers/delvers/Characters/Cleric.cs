@@ -4,8 +4,8 @@
 
 	public class Cleric : HumanPlayer
 	{
-		public Cleric(string name, Turn turn)
-			: base(name, turn)
+		public Cleric(string name)
+			: base(name)
 		{
 			this.Hp = 14;
 		}

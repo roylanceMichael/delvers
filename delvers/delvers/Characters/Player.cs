@@ -3,30 +3,25 @@
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using delvers.Game;
 	using delvers.Utilities;
 	using delvers.Turns;
 
 	public class Player
 	{
-		public Player(string name, Turn turn)
+		public Player(string name)
 		{
 			this.Name = name;
-			this.Turn = turn;
 		}
 
-		protected static IList<Player> FilterAttackablePlayers<T>(IList<Player> players) where T: class 
+		protected static IList<Player> FilterAttackablePlayers<T>(IList<Player> players) where T : class
 		{
-			return players
-				.Where(player => player.GetType().InheritsImplementsOrIs(typeof(T)) &&
-													player.IsAttackable)
-				.ToList();
+			return players.Where(player => player.GetType().InheritsImplementsOrIs(typeof(T)) && player.IsAttackable).ToList();
 		}
 
 		public string Name { get; private set; }
 
 		public int Hp { get; protected set; }
-
-		public Turn Turn { get; private set; }
 
 		public void TakeDamage(int healthToSubtract)
 		{
@@ -40,9 +35,8 @@
 			}
 		}
 
-		public virtual string TakeTurn(IList<Player> players)
+		public virtual void TakeTurn(IBoardGame boardGame)
 		{
-			return string.Empty;
 		}
 
 		public bool CanTakeTurn

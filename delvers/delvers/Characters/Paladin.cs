@@ -4,8 +4,8 @@
 
 	public class Paladin : HumanPlayer
 	{
-		public Paladin(string name, Turn turn)
-			: base(name, turn)
+		public Paladin(string name)
+			: base(name)
 		{
 			this.Hp = 18;
 		}

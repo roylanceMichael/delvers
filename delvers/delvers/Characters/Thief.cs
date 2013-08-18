@@ -4,8 +4,8 @@
 
 	public class Thief : HumanPlayer
 	{
-		public Thief(string name, Turn turn)
-			: base(name, turn)
+		public Thief(string name)
+			: base(name)
 		{
 			this.Hp = 14;
 		}

@@ -8,38 +8,49 @@ namespace delvers.Game
 {
 	using delvers.Builders;
 	using delvers.Characters;
+	using delvers.Log;
 
-	public class BoardGame
+	public class BoardGame : IBoardGame
 	{
-		private readonly List<Player> players;
-		private readonly List<Player> deadMonsters;
-
-		public BoardGame(List<Player> players)
+		private readonly bool addMoreMonstersUntilPlayersDie;
+		public BoardGame(IList<Player> players, bool addMoreMonstersUntilPlayersDie = true)
 		{
-			this.players = players;
-			this.deadMonsters = new List<Player>();
+			this.Players = players;
+			this.DeadMonsters = new List<Player>();
+			this.addMoreMonstersUntilPlayersDie = addMoreMonstersUntilPlayersDie;
 		}
+
+		public IList<Player> Players { get; private set; }
+		public IList<Player> DeadMonsters { get; private set; }
 
 		public IEnumerable<string> StartGame()
 		{
-			var log = new List<string>();
+			GameLogger.ResetLog();
 			var turnNumber = 1;
 			
 			// do while game is still in progress
 			while(!this.GameEnded())
 			{
 				// perform turn for all users
-				log.Add("--- TURN " + turnNumber + " ---");
-				log.AddRange(this.players.Select(player => player.TakeTurn(this.players)));
-				log.Add("-");
-				log.AddRange(this.players.Select(player => player.ToString()));
+				GameLogger.LogTurnStart(turnNumber);
+				
+				foreach (var player in this.Players)
+				{
+					player.TakeTurn(this);
+				}
 
-				this.HandleMonstersAfterTurn();
+				// log end of turn statistics
+				GameLogger.LogTurnEnd(this.Players);
 
+				if (this.addMoreMonstersUntilPlayersDie)
+				{
+					this.HandleMonstersAfterTurn();
+				}
+				
 				turnNumber++;
 			}
 
-			return log;
+			return GameLogger.GameLogs();
 		}
 
 		private void HandleMonstersAfterTurn()
@@ -55,15 +66,15 @@ namespace delvers.Game
 			// remove all monsters from list
 			foreach (var monster in this.GetMonsters())
 			{
-				this.deadMonsters.Add(monster);
-				this.players.Remove(monster);
+				this.DeadMonsters.Add(monster);
+				this.Players.Remove(monster);
 			}
 
 			var characterBuilder = new CharacterBuilder();
 			for (var i = 0; i < this.GetHumanPlayers().Count(); i++)
 			{
-				var newMonster = characterBuilder.BuildCharacter("monster", "monster_" + (this.deadMonsters.Count + i + 1));
-				this.players.Add(newMonster);
+				var newMonster = characterBuilder.BuildCharacter("monster", "monster_" + (this.DeadMonsters.Count + i + 1));
+				this.Players.Add(newMonster);
 			}
 		}
 
@@ -76,18 +87,18 @@ namespace delvers.Game
 			return this.GetHumanPlayers().All(player => player.IsDead);
 		}
 
-		private IEnumerable<Player> GetHumanPlayers()
+		public IEnumerable<Player> GetHumanPlayers()
 		{
 			return 
-				this.players
+				this.Players
 				.Where(player => Utilities.Randomizer.InheritsImplementsOrIs(player.GetType(), typeof(HumanPlayer)))
 				.ToList();
 		}
 
-		private IEnumerable<Player> GetMonsters()
+		public IEnumerable<Player> GetMonsters()
 		{
 			return
-						this.players
+						this.Players
 						.Where(player => Utilities.Randomizer.InheritsImplementsOrIs( player.GetType(), typeof(Monster)))
 						.ToList();
 		}

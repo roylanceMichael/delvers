@@ -4,8 +4,8 @@
 
 	public class Wizard : HumanPlayer
 	{
-		public Wizard(string name, Turn turn)
-			: base(name, turn)
+		public Wizard(string name)
+			: base(name)
 		{
 			this.Hp = 12;
 		}

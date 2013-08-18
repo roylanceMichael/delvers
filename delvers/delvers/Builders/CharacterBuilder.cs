@@ -9,33 +9,30 @@
 	{
 		public Player BuildCharacter(string classType, string name)
 		{
-			var standardHumanPlayerTurn = new Turn(new RandomAmount(), new LowestHpPlayer());
-			var standardMonsterTurn = new Turn(new StaticAmount(), new RandomPlayer());
-
 			Player player;
 			switch (classType.ToLower())
 			{
 
 				case "archer":
-					player = new Archer(name, standardHumanPlayerTurn);
+					player = new Archer(name);
 					break;
 				case "cleric":
-					player = new Cleric(name, standardHumanPlayerTurn);
+					player = new Cleric(name);
 					break;
 				case "thief":
-					player = new Thief(name, standardHumanPlayerTurn);
+					player = new Thief(name);
 					break;
 				case "paladin":
-					player = new Paladin(name, standardHumanPlayerTurn);
+					player = new Paladin(name);
 					break;
 				case "warrior":
-					player = new Warrior(name, standardHumanPlayerTurn);
+					player = new Warrior(name);
 					break;
 				case "wizard":
-					player = new Wizard(name, standardHumanPlayerTurn);
+					player = new Wizard(name);
 					break;
 				default:
-					player = new Monster(name, standardMonsterTurn);
+					player = new Monster(name);
 					break;
 			}
 			return player;

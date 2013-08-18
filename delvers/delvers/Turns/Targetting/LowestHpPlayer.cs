@@ -15,7 +15,14 @@ namespace delvers.Turns.Targetting
 				throw new ArgumentNullException("players");
 			}
 
-			var lowestPlayer = players.OrderBy(t => t.Hp).First();
+			var attackablePlayers = players.Where(player => player.IsAttackable).ToList();
+
+			if (!attackablePlayers.Any())
+			{
+				return -1;
+			}
+
+			var lowestPlayer = attackablePlayers.OrderBy(player => player.Hp).First();
 
 			return players.IndexOf(lowestPlayer);
 		}

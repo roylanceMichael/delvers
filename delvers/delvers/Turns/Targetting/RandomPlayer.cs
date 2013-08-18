@@ -14,6 +14,11 @@ namespace delvers.Turns.Targetting
 				throw new ArgumentNullException("players");
 			}
 
+			if (players.Count == 0)
+			{
+				return -1;
+			}
+
 			return Utilities.Randomizer.GetRandomValue(0, players.Count);
 		}
 	}

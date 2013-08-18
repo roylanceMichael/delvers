@@ -5,6 +5,7 @@ namespace delvers.Turns
 {
 	using delvers.Characters;
 	using delvers.Turns.Attacking;
+	using delvers.Turns.Discard;
 	using delvers.Turns.Targetting;
 
 	public class Turn
@@ -27,6 +28,12 @@ namespace delvers.Turns
 
 		public string PerformTurn(IList<Player> players, Player performingPlayer)
 		{
+			// perform draw cards
+			
+			// perform use cards
+			
+			// perform cleanup
+
 			if (players == null || !players.Any() || performingPlayer == null)
 			{
 				return string.Empty;
