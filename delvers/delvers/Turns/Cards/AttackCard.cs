@@ -27,7 +27,7 @@ namespace delvers.Turns.Cards
 		{
 			get
 			{
-				return "Attack";
+				return "Attack card";
 			}
 		}
 
@@ -46,7 +46,7 @@ namespace delvers.Turns.Cards
 			
 			monster.TakeDamage(damageTaken);
 
-			GameLogger.LogFormat("{0} gave {1} damage to {2}", this.player.Name, damageTaken, monster.Name);
+			GameLogger.LogFormat("{0} used the {1} and gave {2} damage to {3}", this.player.Name, this.Name, damageTaken, monster.Name);
 		}
 	}
 }

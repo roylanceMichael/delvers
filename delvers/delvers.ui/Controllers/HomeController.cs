@@ -31,7 +31,7 @@ namespace delvers.ui.Controllers
 				gamePlayers.Add(monster);
 			}
 
-			var boardGame = new BoardGame(gamePlayers);
+			var boardGame = new BoardGame(gamePlayers, false);
 			var gameResults = boardGame.StartGame();
 
 			return Json(new { results = gameResults}, JsonRequestBehavior.AllowGet);

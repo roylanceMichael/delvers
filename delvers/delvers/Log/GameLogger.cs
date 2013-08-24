@@ -30,6 +30,7 @@ namespace delvers.Log
 
 		public static void LogTurnEnd(IList<Player> players)
 		{
+			Logs.Add("--- PLAYER STATS ---");
 			foreach (var player in players)
 			{
 				Logs.Add(string.Format("Name: {0}, Hp: {1}", player.Name, player.Hp));

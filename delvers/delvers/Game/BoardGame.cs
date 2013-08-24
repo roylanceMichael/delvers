@@ -84,7 +84,20 @@ namespace delvers.Game
 		/// <returns></returns>
 		public bool GameEnded()
 		{
-			return this.GetHumanPlayers().All(player => player.IsDead);
+			if (this.addMoreMonstersUntilPlayersDie)
+			{
+				return this.GetHumanPlayers().All(player => player.IsDead);
+			}
+			
+			var monstersWin = this.GetHumanPlayers().Count(player => player.IsAttackable) == 0;
+			
+			if (monstersWin)
+			{
+				return true;
+			}
+
+			var playersWin = this.GetMonsters().Count(player => player.IsAttackable) == 0;
+			return playersWin;
 		}
 
 		public IEnumerable<Player> GetHumanPlayers()
