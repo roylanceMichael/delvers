@@ -18,6 +18,8 @@
 		{
 			this.Hp = 18;
 			this.AttackPower = 2;
+            this.MagicPower = 1;
+            this.DefensePower = 3;
 		}
 
 		public override void DrawCard(IBoardGame gameBoard)

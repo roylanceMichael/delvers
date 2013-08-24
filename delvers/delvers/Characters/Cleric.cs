@@ -9,6 +9,8 @@
 		{
 			this.Hp = 14;
 			this.AttackPower = 1;
+            this.MagicPower = 3;
+            this.DefensePower = 2;
 		}
 	}
 }

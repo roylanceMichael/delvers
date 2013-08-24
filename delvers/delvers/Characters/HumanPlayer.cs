@@ -26,6 +26,10 @@ namespace delvers.Characters
 
 		public int AttackPower { get; set; }
 
+        public int MagicPower { get; set; }
+
+        public int DefensePower { get; set; }
+
 		public override void TakeTurn(IBoardGame gameBoard)
 		{
 			if (!this.CanTakeTurn)
