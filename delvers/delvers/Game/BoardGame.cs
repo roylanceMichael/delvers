@@ -27,7 +27,9 @@ namespace delvers.Game
 		{
 			GameLogger.ResetLog();
 			var turnNumber = 1;
-			
+
+			this.DrawCardsForHumanPlayersAtBeginningOfGame();
+
 			// do while game is still in progress
 			while(!this.GameEnded())
 			{
@@ -51,6 +53,15 @@ namespace delvers.Game
 			}
 
 			return GameLogger.GameLogs();
+		}
+
+		private void DrawCardsForHumanPlayersAtBeginningOfGame()
+		{
+			// have all players draw cards at the beginning of the game
+			foreach (var humanPlayer in this.GetHumanPlayers())
+			{
+				((HumanPlayer)humanPlayer).DrawCard(this);
+			}
 		}
 
 		private void HandleMonstersAfterTurn()

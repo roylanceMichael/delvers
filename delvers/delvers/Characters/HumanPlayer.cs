@@ -1,14 +1,11 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace delvers.Characters
 {
 	using delvers.Game;
-	using delvers.Turns;
 	using delvers.Turns.Cards;
 	using delvers.Turns.Cleanup;
 	using delvers.Turns.Discard;
-	using delvers.Turns.Draw;
 	using delvers.Utilities;
 
 	public class HumanPlayer : Player
@@ -16,10 +13,18 @@ namespace delvers.Characters
 		public HumanPlayer(string name)
 			: base(name)
 		{
-			this.Cards = new List<ICard>();
+			this.CurrentCards = new List<ICard>();
+			this.DrawnCards = new List<ICard>();
+			this.CardsToDrawFrom = new List<ICard>();
 		}
 
-		public IList<ICard> Cards { get; private set; } 
+		public IList<ICard> CardsToDrawFrom { get; private set; }
+
+		public IList<ICard> DrawnCards { get; private set; } 
+
+		public IList<ICard> CurrentCards { get; private set; }
+
+		public int AttackPower { get; set; }
 
 		public override void TakeTurn(IBoardGame gameBoard)
 		{
@@ -33,18 +38,22 @@ namespace delvers.Characters
 			discardCards.Discard();
 
 			// perform draw
-			var drawCards = new DrawCards(this, gameBoard);
-			drawCards.Draw();
+			this.DrawCard(gameBoard);
 
 			// use a card
-			var randCardIdx = Randomizer.GetRandomValue(0, this.Cards.Count - 1);
-			var card = this.Cards[randCardIdx];
+			var randCardIdx = Randomizer.GetRandomValue(0, this.CurrentCards.Count - 1);
+			var card = this.CurrentCards[randCardIdx];
 			card.Use();
-			this.Cards.RemoveAt(randCardIdx);
+			this.CurrentCards.RemoveAt(randCardIdx);
 
 			// cleanup
 			var cleanupTurn = new CleanupTurn(this);
 			cleanupTurn.Cleanup();
+		}
+
+		public virtual void DrawCard(IBoardGame gameBoard)
+		{
+			
 		}
 	}
 }

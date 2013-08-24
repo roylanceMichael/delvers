@@ -8,6 +8,7 @@
 			: base(name)
 		{
 			this.Hp = 18;
+			this.AttackPower = 1;
 		}
 	}
 }

@@ -5,6 +5,8 @@
 	public interface ICard
 	{
 		string Name { get; }
+
+		void OptionalUse();
 		void Use();
 	}
 }

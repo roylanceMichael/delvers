@@ -31,6 +31,10 @@ namespace delvers.Turns.Cards
 			}
 		}
 
+		public void OptionalUse()
+		{
+		}
+
 		public void Use()
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
