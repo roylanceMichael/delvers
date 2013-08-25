@@ -7,7 +7,7 @@
 	using delvers.Log;
 	using delvers.Turns;
 	using delvers.Turns.Cards;
-	using delvers.Turns.Cards.Warrior;
+	using delvers.Turns.Cards.Wizard;
 	using delvers.Turns.Targetting;
 	using delvers.Utilities;
 
@@ -46,7 +46,6 @@
 
 					GameLogger.LogFormat("{0} drew {1}.", this.Name, firstCard.Name);
 					this.CurrentCards.Add(firstCard);
-					this.CardsToDrawFrom.Remove(firstCard);
 				}
 				else
 				{
@@ -70,6 +69,24 @@
 				var card = new DrainLife(this, gameBoard, new LowestHpPlayer());
 				this.CardsToDrawFrom.Add(card);
 			}
+            
+            for (var i = 0; i < 6; i++)
+            {
+                var card = new MagicMissile(this, gameBoard, new LowestHpPlayer());
+                this.CardsToDrawFrom.Add(card);
+            }
+
+            for (var i = 0; i < 6; i++)
+            {
+                var card = new DragonFlame(this, gameBoard, new LowestHpPlayer());
+                this.CardsToDrawFrom.Add(card);
+            }
+
+            for (var i = 0; i < 3; i++)
+            {
+                var card = new FrostBolt(this, gameBoard, new LowestHpPlayer());
+                this.CardsToDrawFrom.Add(card);
+            }
 
 			this.DoneInitialization = true;
 		}

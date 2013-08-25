@@ -56,7 +56,6 @@ namespace delvers.Characters
 				var card = this.CurrentCards[randCardIdx];
 				card.Use();
 				this.CurrentCards.RemoveAt(randCardIdx);
-				this.DrawnCards.Add(card);
 			}
 
 			// cleanup

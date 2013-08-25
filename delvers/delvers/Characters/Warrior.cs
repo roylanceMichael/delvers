@@ -62,7 +62,6 @@
 
 					GameLogger.LogFormat("{0} drew {1}.", this.Name, firstCard.Name);
 					this.CurrentCards.Add(firstCard);
-					this.CardsToDrawFrom.Remove(firstCard);
 				}
 				else
 				{

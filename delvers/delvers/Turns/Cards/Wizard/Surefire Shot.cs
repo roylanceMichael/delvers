@@ -14,17 +14,19 @@ namespace delvers.Turns.Cards.Wizard
 
     /// <summary>
     /// Range: 6
-    /// Deal 1d6+MGK DMG to a single Enemy.
-    /// Optional:
-    /// -1 Mana: Gain HP equal to your heal value. (heal value = 25% rounded to nearest integer)
+    /// +1 Mana: Deal 1d6+MGK DMG to a single Enemy.
+    /// or
+    /// -1 Mana: 1d6+MGK to a single enemy.
+    /// or
+    /// -2 Mana: 1d6+MGK DMG to a single enemy and you gain +2 MGK for 2 turns.
     /// </summary>
-    public class DrainLife : ICard
+    public class SurefireShot : ICard
     {
         private readonly Wizard wizardPlayer;
         private readonly IBoardGame gameBoard;
         private readonly ITargetPlayer targetPlayer;
 
-        public DrainLife(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+        public SurefireShot(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
         {
             this.wizardPlayer = wizardPlayer;
             this.gameBoard = gameBoard;
@@ -35,21 +37,32 @@ namespace delvers.Turns.Cards.Wizard
         {
             get
             {
-                return "Drain Life";
+                return "Surefire Shot";
             }
         }
 
         /// <summary>
-        /// 1 Mana: Gain HP equal to your heal value
+        /// -1 Mana: 1d6+MGK to a single enemy
+        /// TODO: implement Mana System
         /// </summary>
         public void OptionalUse()
+        {
+            // TODO: implement Mana system
+        }
+
+        /// <summary>
+        /// -2 Mana: 1d6+MGK DMG to a single enemy and you gain +2 MGK for 2 turns.
+        /// TODO: implement Mana System
+        /// </summary>
+        public void OptionalUse2()
         {
             // TODO: implement rage system
         }
 
         /// <summary>
         /// Range: 6
-        /// Deal 1d6+ATK DMG to a single Enemy.
+        /// +1 Mana: Deal MGK to a single Enemy.
+        /// TODO: implement Mana System
         /// TODO: Implement ranged vs. melee
         /// </summary>
         public void Use()
@@ -64,8 +77,8 @@ namespace delvers.Turns.Cards.Wizard
 
             var monster = monsters[monsterIdx];
 
-            // Deal 1d6+ATK DMG to a single Enemy
-            var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.wizardPlayer.MagicPower;
+            // +1 Mana: Deal MGK DMG to a single Enemy
+            var damageTaken = this.wizardPlayer.MagicPower;
 
             monster.TakeDamage(damageTaken);
 

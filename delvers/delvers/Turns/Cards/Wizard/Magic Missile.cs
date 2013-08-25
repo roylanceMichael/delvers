@@ -14,17 +14,17 @@ namespace delvers.Turns.Cards.Wizard
 
     /// <summary>
     /// Range: 6
-    /// Deal 1d6+MGK DMG to a single Enemy.
-    /// Optional:
-    /// -1 Mana: Gain HP equal to your heal value. (heal value = 25% rounded to nearest integer)
+    /// +1 Mana: Deal 1d6+MGK DMG to a single Enemy.
+    /// or
+    /// -1 Mana: 1d6+MGK to a single enemy and 1/2 that DMG to a second enemy.
     /// </summary>
-    public class DrainLife : ICard
+    public class MagicMissile : ICard
     {
         private readonly Wizard wizardPlayer;
         private readonly IBoardGame gameBoard;
         private readonly ITargetPlayer targetPlayer;
 
-        public DrainLife(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+        public MagicMissile(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
         {
             this.wizardPlayer = wizardPlayer;
             this.gameBoard = gameBoard;
@@ -35,12 +35,13 @@ namespace delvers.Turns.Cards.Wizard
         {
             get
             {
-                return "Drain Life";
+                return "Magic Missile";
             }
         }
 
         /// <summary>
-        /// 1 Mana: Gain HP equal to your heal value
+        /// -1 Mana: 1d6+MGK to a single enemy and 1/2 that DMG to a second enemy.
+        /// TODO: implement Mana System
         /// </summary>
         public void OptionalUse()
         {
@@ -49,7 +50,8 @@ namespace delvers.Turns.Cards.Wizard
 
         /// <summary>
         /// Range: 6
-        /// Deal 1d6+ATK DMG to a single Enemy.
+        /// +1 Mana: Deal 1d6+MGK DMG to a single Enemy.
+        /// TODO: implement Mana System
         /// TODO: Implement ranged vs. melee
         /// </summary>
         public void Use()
@@ -64,7 +66,7 @@ namespace delvers.Turns.Cards.Wizard
 
             var monster = monsters[monsterIdx];
 
-            // Deal 1d6+ATK DMG to a single Enemy
+            // +1 Mana: Deal 1d6+ATK DMG to a single Enemy
             var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.wizardPlayer.MagicPower;
 
             monster.TakeDamage(damageTaken);

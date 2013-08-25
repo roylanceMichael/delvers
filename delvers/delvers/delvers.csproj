@@ -67,6 +67,10 @@
     <Compile Include="Turns\Cards\Warrior\MockingBlow.cs" />
     <Compile Include="Turns\Cards\Warrior\RejuvenatingStrike.cs" />
     <Compile Include="Turns\Cards\Warrior\SwordAttack.cs" />
+    <Compile Include="Turns\Cards\Wizard\Surefire Shot.cs" />
+    <Compile Include="Turns\Cards\Wizard\Frostbolt.cs" />
+    <Compile Include="Turns\Cards\Wizard\Dragon Flame.cs" />
+    <Compile Include="Turns\Cards\Wizard\Magic Missile.cs" />
     <Compile Include="Turns\Cards\Wizard\Drain Life.cs" />
     <Compile Include="Turns\Cleanup\CleanupTurn.cs" />
     <Compile Include="Turns\Discard\DiscardCards.cs" />
