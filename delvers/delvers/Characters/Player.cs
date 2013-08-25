@@ -23,7 +23,7 @@
 
 		public int Hp { get; protected set; }
 
-		public void TakeDamage(int healthToSubtract)
+		public virtual void TakeDamage(int healthToSubtract)
 		{
 			if (this.Hp - healthToSubtract < 0)
 			{

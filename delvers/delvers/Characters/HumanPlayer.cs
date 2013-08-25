@@ -25,15 +25,15 @@ namespace delvers.Characters
 
 		public IList<ICard> CardsToDrawFrom { get; private set; }
 
-		public IList<ICard> DrawnCards { get; private set; } 
+		public IList<ICard> DrawnCards { get; private set; }
 
 		public IList<ICard> CurrentCards { get; private set; }
 
 		public int AttackPower { get; set; }
 
-        public int MagicPower { get; set; }
+		public int MagicPower { get; set; }
 
-        public int DefensePower { get; set; }
+		public int DefensePower { get; set; }
 
 		public override void TakeTurn(IBoardGame gameBoard)
 		{
@@ -66,7 +66,7 @@ namespace delvers.Characters
 
 		public virtual void DrawCard(IBoardGame gameBoard)
 		{
-			
+
 		}
 	}
 }

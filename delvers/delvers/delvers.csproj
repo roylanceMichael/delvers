@@ -60,8 +60,13 @@
     <Compile Include="Turns\Attacking\StaticAmount.cs" />
     <Compile Include="Turns\Cards\AttackCard.cs" />
     <Compile Include="Turns\Cards\ICard.cs" />
+    <Compile Include="Turns\Cards\Warrior\DefensiveStrike.cs" />
+    <Compile Include="Turns\Cards\Warrior\HeavyBlow.cs" />
+    <Compile Include="Turns\Cards\Warrior\IntoTheFray.cs" />
+    <Compile Include="Turns\Cards\Warrior\MagicDefense.cs" />
     <Compile Include="Turns\Cards\Warrior\MockingBlow.cs" />
     <Compile Include="Turns\Cards\Warrior\RejuvenatingStrike.cs" />
+    <Compile Include="Turns\Cards\Warrior\SwordAttack.cs" />
     <Compile Include="Turns\Cards\Wizard\Drain Life.cs" />
     <Compile Include="Turns\Cleanup\CleanupTurn.cs" />
     <Compile Include="Turns\Discard\DiscardCards.cs" />

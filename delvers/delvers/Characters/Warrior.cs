@@ -18,8 +18,25 @@
 		{
 			this.Hp = 18;
 			this.AttackPower = 2;
-            this.MagicPower = 1;
-            this.DefensePower = 3;
+			this.MagicPower = 1;
+			this.DefensePower = 3;
+			this.Rage = 0;
+		}
+
+		public int Rage { get; set; }
+
+		public override void TakeDamage(int healthToSubtract)
+		{
+			if (this.Hp - healthToSubtract < 0)
+			{
+				this.Hp = 0;
+			}
+			else
+			{
+				this.Hp = this.Hp - healthToSubtract;
+			}
+
+			this.Rage += 1;
 		}
 
 		public override void DrawCard(IBoardGame gameBoard)
@@ -71,6 +88,30 @@
 			for (var i = 0; i < 3; i++)
 			{
 				var card = new MockingBlow(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 3; i++)
+			{
+				var card = new DefensiveStrike(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 3; i++)
+			{
+				var card = new MagicDefense(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new SwordAttack(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 1; i++)
+			{
+				var card = new IntoTheFray(this, gameBoard, new LowestHpPlayer());
 				this.CardsToDrawFrom.Add(card);
 			}
 
