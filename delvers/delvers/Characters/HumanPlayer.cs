@@ -23,6 +23,7 @@ namespace delvers.Characters
 			this.DoneInitialization = false;
 		}
 
+
 		public IList<ICard> CardsToDrawFrom { get; private set; }
 
 		public IList<ICard> DrawnCards { get; private set; }

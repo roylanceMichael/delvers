@@ -87,6 +87,12 @@
                 var card = new FrostBolt(this, gameBoard, new LowestHpPlayer());
                 this.CardsToDrawFrom.Add(card);
             }
+			
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new SurefireShot(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
 
 			this.DoneInitialization = true;
 		}
