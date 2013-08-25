@@ -2,6 +2,8 @@
 
 namespace delvers.Characters
 {
+	using System.Linq;
+
 	using delvers.Game;
 	using delvers.Turns.Cards;
 	using delvers.Turns.Cleanup;
@@ -10,12 +12,15 @@ namespace delvers.Characters
 
 	public class HumanPlayer : Player
 	{
+		protected bool DoneInitialization;
+
 		public HumanPlayer(string name)
 			: base(name)
 		{
 			this.CurrentCards = new List<ICard>();
 			this.DrawnCards = new List<ICard>();
 			this.CardsToDrawFrom = new List<ICard>();
+			this.DoneInitialization = false;
 		}
 
 		public IList<ICard> CardsToDrawFrom { get; private set; }
@@ -44,11 +49,14 @@ namespace delvers.Characters
 			// perform draw
 			this.DrawCard(gameBoard);
 
-			// use a card
-			var randCardIdx = Randomizer.GetRandomValue(0, this.CurrentCards.Count - 1);
-			var card = this.CurrentCards[randCardIdx];
-			card.Use();
-			this.CurrentCards.RemoveAt(randCardIdx);
+			if (this.CurrentCards.Any())
+			{
+				// use a card
+				var randCardIdx = Randomizer.GetRandomValue(0, this.CurrentCards.Count - 1);
+				var card = this.CurrentCards[randCardIdx];
+				card.Use();
+				this.CurrentCards.RemoveAt(randCardIdx);
+			}
 
 			// cleanup
 			var cleanupTurn = new CleanupTurn(this);

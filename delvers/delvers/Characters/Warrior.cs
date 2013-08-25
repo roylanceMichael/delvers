@@ -24,7 +24,7 @@
 
 		public override void DrawCard(IBoardGame gameBoard)
 		{
-			if (!this.CardsToDrawFrom.Any() && !this.DrawnCards.Any())
+			if (!this.DoneInitialization)
 			{
 				this.InitializeCards(gameBoard);
 			}
@@ -46,6 +46,7 @@
 					GameLogger.LogFormat("{0} drew {1}.", this.Name, firstCard.Name);
 					this.CurrentCards.Add(firstCard);
 					this.CardsToDrawFrom.Remove(firstCard);
+					this.DrawnCards.Add(firstCard);
 				}
 				else
 				{
@@ -73,6 +74,8 @@
 				var card = new MockingBlow(this, gameBoard, new LowestHpPlayer());
 				this.CardsToDrawFrom.Add(card);
 			}
+
+			this.DoneInitialization = true;
 		}
 	}
 }
