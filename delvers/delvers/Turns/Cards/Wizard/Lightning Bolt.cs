@@ -14,7 +14,7 @@ namespace delvers.Turns.Cards.Wizard
 
 	/// <summary>
 	/// Range: 6
-	/// 0 Mana: Deal 1d6+MGK DMG to a single Enemy.
+	/// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
 	/// or
 	/// -3 Mana: Deal 1d6+MGK DMG to a single enemy and all enemies adjacent to it
 	/// </summary>
@@ -51,7 +51,7 @@ namespace delvers.Turns.Cards.Wizard
 
 		/// <summary>
 		/// Range: 6
-		/// 0 Mana: Deal MGK to a single Enemy.
+		/// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
 		/// TODO: implement Mana System
 		/// TODO: Implement ranged vs. melee
 		/// </summary>
@@ -67,9 +67,9 @@ namespace delvers.Turns.Cards.Wizard
 
 			var monster = monsters[monsterIdx];
 
-			// 0 Mana: Deal 1d6+MGK DMG to target enemey and all enemies adjacent to it.
+			// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
 			// TODO: Implement movement for AOE Damage.
-			var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6);
+			var damageTaken = this.wizardPlayer.MagicPower;
 
 			monster.TakeDamage(damageTaken);
 

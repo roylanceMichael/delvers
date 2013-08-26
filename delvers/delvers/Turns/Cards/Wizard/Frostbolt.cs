@@ -40,7 +40,8 @@ namespace delvers.Turns.Cards.Wizard
         }
 
         /// <summary>
-        /// 0 Mana: Deal 2d6+MGK DMG to a single enemy
+		/// -2 Mana: Deal 2d6+MGK DMG to a single enemy and it is immobilized and cannot move its next turn
+		/// TODO: Impliment movement and status effect tracker for immobilization
         /// </summary>
         public void OptionalUse()
         {
@@ -64,7 +65,7 @@ namespace delvers.Turns.Cards.Wizard
 
             var monster = monsters[monsterIdx];
 
-            // -2 Mana: Deal 2d6+MGK DMG to a single enemy and it is immobilized and cannot move its next turn
+			// 0 Mana: Deal 2d6+MGK DMG to a single enemy
             // TODO: Implement Mana System
             // TODO: Implement Movement and status effect system
             var firstRoll = Utilities.Randomizer.GetRandomValue(1, 6);

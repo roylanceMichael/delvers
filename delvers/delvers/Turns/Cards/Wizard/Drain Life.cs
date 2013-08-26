@@ -49,7 +49,7 @@ namespace delvers.Turns.Cards.Wizard
 
         /// <summary>
         /// Range: 6
-        /// Deal 1d6+ATK DMG to a single Enemy.
+        /// Deal 1d6+MGK DMG to a single Enemy.
         /// TODO: Implement ranged vs. melee
         /// </summary>
         public void Use()
@@ -64,7 +64,7 @@ namespace delvers.Turns.Cards.Wizard
 
             var monster = monsters[monsterIdx];
 
-            // Deal 1d6+ATK DMG to a single Enemy
+            // Deal 1d6+MGK DMG to a single Enemy
             var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.wizardPlayer.MagicPower;
 
             monster.TakeDamage(damageTaken);

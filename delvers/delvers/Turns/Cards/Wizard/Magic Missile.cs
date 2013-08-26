@@ -66,7 +66,7 @@ namespace delvers.Turns.Cards.Wizard
 
             var monster = monsters[monsterIdx];
 
-            // +1 Mana: Deal 1d6+ATK DMG to a single Enemy
+            // +1 Mana: Deal 1d6+MGK DMG to a single Enemy
             var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.wizardPlayer.MagicPower;
 
             monster.TakeDamage(damageTaken);

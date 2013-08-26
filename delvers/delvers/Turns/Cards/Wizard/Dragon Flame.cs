@@ -13,7 +13,7 @@ namespace delvers.Turns.Cards.Wizard
     using delvers.Turns.Targetting;
 
     /// <summary>
-    /// Range: 6
+    /// Range:  Adjacent
     /// +1 Mana: Deal 1d6 DMG to all enemies in a 3x3 area adjacent to you
     /// or
     /// -1 Mana: Deal 1d6+MGK DMG to all enemies in a 3x3 area adjacent to you
@@ -49,7 +49,7 @@ namespace delvers.Turns.Cards.Wizard
         }
 
         /// <summary>
-        /// Range: 6
+        /// Range: Adjacent
         /// +1 Mana: Deal 1d6 DMG to all enemies in a 3x3 area adjacent to you
         /// TODO: implement Mana System
         /// TODO: Implement ranged vs. melee
