@@ -67,6 +67,15 @@
     <Compile Include="Turns\Cards\Warrior\MockingBlow.cs" />
     <Compile Include="Turns\Cards\Warrior\RejuvenatingStrike.cs" />
     <Compile Include="Turns\Cards\Warrior\SwordAttack.cs" />
+    <Compile Include="Turns\Cards\Wizard\Ball of Force.cs" />
+    <Compile Include="Turns\Cards\Wizard\Recall.cs" />
+    <Compile Include="Turns\Cards\Wizard\Rebounding Shield.cs" />
+    <Compile Include="Turns\Cards\Wizard\Magic Wall.cs" />
+    <Compile Include="Turns\Cards\Wizard\Defensive Barrier.cs" />
+    <Compile Include="Turns\Cards\Wizard\Spell Buff.cs" />
+    <Compile Include="Turns\Cards\Wizard\FireBall.cs" />
+    <Compile Include="Turns\Cards\Wizard\Cold Snap.cs" />
+    <Compile Include="Turns\Cards\Wizard\Lightning Bolt.cs" />
     <Compile Include="Turns\Cards\Wizard\Surefire Shot.cs" />
     <Compile Include="Turns\Cards\Wizard\Frostbolt.cs" />
     <Compile Include="Turns\Cards\Wizard\Dragon Flame.cs" />

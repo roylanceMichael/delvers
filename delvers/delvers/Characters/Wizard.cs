@@ -94,6 +94,30 @@
 				this.CardsToDrawFrom.Add(card);
 			}
 
+			for (var i = 0; i < 3; i++)
+			{
+				var card = new LightningBolt(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new ColdSnap(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 1; i++)
+			{
+				var card = new FireBall(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 1; i++)
+			{
+				var card = new BallofForce(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
 			this.DoneInitialization = true;
 		}
 	}
