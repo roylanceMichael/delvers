@@ -34,7 +34,7 @@ namespace delvers.Turns.Cards.Wizard
 		{
 			get
 			{
-				return "Defensive Barrier";
+				return "Magic Wall";
 			}
 		}
 

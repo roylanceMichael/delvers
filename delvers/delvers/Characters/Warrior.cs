@@ -113,6 +113,36 @@
 				var card = new IntoTheFray(this, gameBoard, new LowestHpPlayer());
 				this.CardsToDrawFrom.Add(card);
 			}
+			
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new Cleave(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new SwordSlash(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new ShieldBash(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 1; i++)
+			{
+				var card = new HeavyBlow(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new SwordAttack(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
 
 			this.DoneInitialization = true;
 		}

@@ -30,7 +30,7 @@ namespace delvers.Turns.Cards.Warrior
 		{
 			get
 			{
-				return "Defensive Strike";
+				return "Sword Attack";
 			}
 		}
 
@@ -61,8 +61,7 @@ namespace delvers.Turns.Cards.Warrior
 			var monster = monsters[monsterIdx];
 
 			// Deal 2d6+ATK DMG to a single Enemy
-			var firstRoll = Utilities.Randomizer.GetRandomValue(1, 6);
-			var damageTaken = firstRoll + this.warriorPlayer.AttackPower;
+			var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.warriorPlayer.AttackPower;
 
 			monster.TakeDamage(damageTaken);
 

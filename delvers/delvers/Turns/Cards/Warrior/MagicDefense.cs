@@ -40,8 +40,7 @@ namespace delvers.Turns.Cards.Warrior
 		}
 
 		/// <summary>
-		/// Optional
-		/// 2 Rage: Gain +2 DEF until the end of your next turn
+		/// TODO: Remove this Optional
 		/// </summary>
 		public void OptionalUse()
 		{
@@ -50,9 +49,11 @@ namespace delvers.Turns.Cards.Warrior
 
 		/// <summary>
 		/// Melee
-		/// Deal 2d6+ATK DMG to a single enemy
+		/// Deal your DEF in DMG to a Single enemy
+		/// and gain DEF until the end of your next turn
 		/// TODO: Implement range vs melee
 		/// TODO: Implement concept of DEF until the end of your turn
+		/// TODO: Implement until end of next turn for the + DEF
 		/// </summary>
 		public void Use()
 		{

@@ -41,6 +41,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// <summary>
 		/// Optional
 		/// 2 Rage: that the enemy must attack you with all attacks on its next turn
+		/// TODO: Implement monster attack priority so monster attacks warrior.
 		/// </summary>
 		public void OptionalUse()
 		{

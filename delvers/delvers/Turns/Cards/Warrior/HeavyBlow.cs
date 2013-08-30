@@ -34,13 +34,12 @@ namespace delvers.Turns.Cards.Warrior
 		{
 			get
 			{
-				return "Defensive Strike";
+				return "Heavy Blow";
 			}
 		}
 
 		/// <summary>
 		/// Optional
-		/// 2 Rage: Gain +2 DEF until the end of your next turn
 		/// </summary>
 		public void OptionalUse()
 		{
@@ -53,6 +52,8 @@ namespace delvers.Turns.Cards.Warrior
 		/// 2 Rage: deal 2d6+ATK DMG to a single enemy
 		/// 3 Rage: deal 3d6+ATK DMG to a single enemy
 		/// TODO: Implement range vs melee
+		/// TODO: Make this attack work how it's supposed to.
+		/// TODO: Implement Rage system
 		/// </summary>
 		public void Use()
 		{
@@ -66,7 +67,7 @@ namespace delvers.Turns.Cards.Warrior
 
 			var monster = monsters[monsterIdx];
 
-			// Deal 2d6+ATK DMG to a single Enemy
+	
 			var firstRoll = Utilities.Randomizer.GetRandomValue(1, 6);
 			var secondRoll = Utilities.Randomizer.GetRandomValue(1, 6);
 			var damageTaken = firstRoll + secondRoll + this.warriorPlayer.AttackPower;

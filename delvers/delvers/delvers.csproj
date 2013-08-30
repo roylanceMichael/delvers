@@ -60,6 +60,13 @@
     <Compile Include="Turns\Attacking\StaticAmount.cs" />
     <Compile Include="Turns\Cards\AttackCard.cs" />
     <Compile Include="Turns\Cards\ICard.cs" />
+    <Compile Include="Turns\Cards\Warrior\Shield Bash.cs" />
+    <Compile Include="Turns\Cards\Warrior\Sword Slash.cs" />
+    <Compile Include="Turns\Cards\Warrior\Cleave.cs" />
+    <Compile Include="Turns\Cards\Warrior\Remember.cs" />
+    <Compile Include="Turns\Cards\Warrior\Share the Load.cs" />
+    <Compile Include="Turns\Cards\Warrior\Total Defense.cs" />
+    <Compile Include="Turns\Cards\Warrior\Shield Block.cs" />
     <Compile Include="Turns\Cards\Warrior\DefensiveStrike.cs" />
     <Compile Include="Turns\Cards\Warrior\HeavyBlow.cs" />
     <Compile Include="Turns\Cards\Warrior\IntoTheFray.cs" />

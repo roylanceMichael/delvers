@@ -13,18 +13,17 @@ namespace delvers.Turns.Cards.Warrior
 
 	/// <summary>
 	/// Melee
-	/// Charge in a straight line your move distance. 
-	/// Deal 1d6 DMG to X different enemies you pass adjacent to,
-	/// where X=Rage spent.
-	/// Also, gain 2 DEF for every 2 Rage spent in this way
+	/// Deal DEF DMG to a single enemy
+	/// Optional
+	/// -2 Rage: +1d6 DMG to this attack
 	/// </summary>
-	public class IntoTheFray : ICard
+	public class SwordSlash : ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
 		private readonly ITargetPlayer targetPlayer;
 
-		public IntoTheFray(Warrior warriorPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+		public SwordSlash(Warrior warriorPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
 		{
 			this.warriorPlayer = warriorPlayer;
 			this.gameBoard = gameBoard;
@@ -35,13 +34,13 @@ namespace delvers.Turns.Cards.Warrior
 		{
 			get
 			{
-				return "Defensive Strike";
+				return "Sword Slash";
 			}
 		}
 
 		/// <summary>
 		/// Optional
-		/// 2 Rage: Gain +2 DEF until the end of your next turn
+		/// 2 Rage: +1d6 DMG to this attack
 		/// </summary>
 		public void OptionalUse()
 		{
@@ -49,13 +48,9 @@ namespace delvers.Turns.Cards.Warrior
 		}
 
 		/// <summary>
-		/// Charge in a straight line your move distance. 
-		/// Deal 1d6 DMG to X different enemies you pass adjacent to,
-		/// where X=Rage spent.
-		/// Also, gain 2 DEF for every 2 Rage spent in this way
-		/// TODO: Implement move system. For now just attacking one monster
-		/// TODO: Make this so it does what it's supposed to.
-		/// TODO: Implement Rage system
+		/// Melee
+		/// Deal DEF DMG to a single enemy
+		/// TODO: Implement range vs melee
 		/// </summary>
 		public void Use()
 		{
@@ -69,10 +64,8 @@ namespace delvers.Turns.Cards.Warrior
 
 			var monster = monsters[monsterIdx];
 
-			// Deal 1d6+ATK DMG to a single Enemy
-			// TODO:  Make this do what it's supposed to do.
-			var firstRoll = Utilities.Randomizer.GetRandomValue(1, 6);
-			var damageTaken = firstRoll;
+			// Deal DEF DMG to a single enemy
+			var damageTaken = this.warriorPlayer.DefensePower;
 
 			monster.TakeDamage(damageTaken);
 
