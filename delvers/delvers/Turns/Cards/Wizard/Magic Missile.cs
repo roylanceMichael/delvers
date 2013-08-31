@@ -45,7 +45,7 @@ namespace delvers.Turns.Cards.Wizard
         /// </summary>
         public void OptionalUse()
         {
-            // TODO: implement rage system
+            // TODO: implement Mana system
         }
 
         /// <summary>
