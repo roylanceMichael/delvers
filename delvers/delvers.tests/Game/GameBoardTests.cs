@@ -14,13 +14,14 @@ namespace delvers.tests.Game
 
 	[TestClass]
 	public class GameBoardTests
-	{			
+	{
 		[TestMethod]
 		public void VerifyGameEndsWhenOneTeamIsDead()
 		{
 			// arrange
-			var archer = new Archer("CoolArcher");
-			var players = new List<Player> { archer, new Monster("BadMonster") };
+			var builder = new CharacterBuilder();
+			var archer = builder.BuildCharacter("archer", "CoolArcher");
+			var players = new List<Player> { archer, builder.BuildCharacter("monster", "BadMonster") };
 
 			var boardGame = new BoardGame(players, false);
 

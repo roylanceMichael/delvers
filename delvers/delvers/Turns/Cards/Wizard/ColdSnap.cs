@@ -14,17 +14,19 @@ namespace delvers.Turns.Cards.Wizard
 
 	/// <summary>
 	/// Range: 6
-	/// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
+	/// +1 Mana: MGK DMG to all enemies in a 2x2 area.
 	/// or
-	/// -3 Mana: Deal 1d6+MGK DMG to a single enemy and all enemies adjacent to it
+	/// -1 Mana: MGK DMG to all enemies in a 2x2 area AND those enemies are also slowed.
+	/// or
+	/// -3 Mana: 1d6+MGK DMG to all enemies in a 2x2 area and those enemies are also slowed.
 	/// </summary>
-	public class LightningBolt : ICard
+	public class ColdSnap : NonInstantCard, ICard
 	{
 		private readonly Wizard wizardPlayer;
 		private readonly IBoardGame gameBoard;
 		private readonly ITargetPlayer targetPlayer;
 
-		public LightningBolt(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+		public ColdSnap(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
 		{
 			this.wizardPlayer = wizardPlayer;
 			this.gameBoard = gameBoard;
@@ -35,27 +37,36 @@ namespace delvers.Turns.Cards.Wizard
 		{
 			get
 			{
-				return "Lightning Bolt";
+				return "Cold Snap";
 			}
 		}
 
 		/// <summary>
-		/// -3 Mana: Deal 1d6+MGK DMG to a single enemy and all enemies adjacent to it
-		/// TODO: Implement move system for AOE spell
+		/// -1 Mana: MGK DMG to all enemies in a 2x2 area AND those enemies are also slowed.
 		/// TODO: implement Mana System
 		/// </summary>
 		public void OptionalUse()
+		{
+			// TODO: implement Mana system
+			// TODO: Implement movement system for AOE DMG
+		}
+
+		/// <summary>
+		/// -3 Mana: MGK DMG to all enemies in a 2x2 area.
+		/// TODO: implement Mana System
+		/// </summary>
+		public void OptionalUse2()
 		{
 			// TODO: implement Mana system
 		}
 
 		/// <summary>
 		/// Range: 6
-		/// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
+		/// +1 Mana: Deal MGK to all enemies in a 2x2 area.
 		/// TODO: implement Mana System
-		/// TODO: Implement ranged vs. melee
+		/// TODO: Implement movement system for AOE
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);
@@ -67,8 +78,7 @@ namespace delvers.Turns.Cards.Wizard
 
 			var monster = monsters[monsterIdx];
 
-			// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
-			// TODO: Implement movement for AOE Damage.
+			// +1 Mana: Deal MGK DMG to all Enemies in a 2x2 area.
 			var damageTaken = this.wizardPlayer.MagicPower;
 
 			monster.TakeDamage(damageTaken);

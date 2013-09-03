@@ -16,7 +16,7 @@ namespace delvers.Turns.Cards.Archer
 	/// Gain +2 ATK until end of your next turn
 	/// TODO: Add to cards drawn, 4 of them.
 	/// </summary>
-	public class Pierce : ICard
+	public class Pierce : OffensiveInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -45,7 +45,7 @@ namespace delvers.Turns.Cards.Archer
 		/// <summary>
 		/// Gain +2 ATK until end of your next turn
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

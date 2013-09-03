@@ -4,7 +4,7 @@
 
 	public class Thief : HumanPlayer
 	{
-		public Thief(string name)
+		internal Thief(string name)
 			: base(name)
 		{
 			this.Hp = 14;

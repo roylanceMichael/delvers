@@ -51,6 +51,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Game\GameBoardTests.cs" />
+    <Compile Include="InstantCardSystem\HumanPlayersPlayInstantCardsTests.cs" />
+    <Compile Include="InstantCardSystem\Warrior\ShareTheLoadTests.cs" />
     <Compile Include="Players\HumanPlayerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

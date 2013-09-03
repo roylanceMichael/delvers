@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// TODO: Impliment instant system.
 	/// TODO: Add this to cards drawn.
 	/// </summary>
-	public class Remember : ICard
+	public class Remember : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -48,7 +48,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// melee
 		/// Draw any normal attack from your discard pile and play it immediately
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

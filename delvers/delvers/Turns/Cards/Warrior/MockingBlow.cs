@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// Optional
 	/// 2 Rage: that the enemy must attack you with all attacks on its next turn
 	/// </summary>
-	public class MockingBlow : ICard
+	public class MockingBlow : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -53,7 +53,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// Deal 2d6+ATK DMG to a single enemy
 		/// TODO: Implement range vs melee
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

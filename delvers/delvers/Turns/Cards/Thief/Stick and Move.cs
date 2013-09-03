@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Thief
 	/// X = amount of energy spent.  Cannot hit the same enemy twice.
 	/// TODO: Add this to cards Drawn, 1 of them
 	/// </summary>
-	public class StickandMove : ICard
+	public class StickandMove : NonInstantCard, ICard
 	{
 		private readonly Thief thiefPlayer;
 		private readonly IBoardGame gameBoard;
@@ -53,7 +53,7 @@ namespace delvers.Turns.Cards.Thief
 		/// TODO: Implement movement system
 		/// TODO: Implement energy system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

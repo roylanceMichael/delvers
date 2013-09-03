@@ -16,9 +16,9 @@ namespace delvers.Turns.Cards.Wizard
 	/// Range: 6
 	/// Any single player takes 1/2 DMG from a hit (ignoring status effects) OR remove all status effectts from a single player.
 	/// TODO: Make it so wizard draws this card in Wizard.cs 3 of them
-	/// /// TODO: implement instant system that rejens in cleanup phase
+	/// TODO: implement instant system that rejens in cleanup phase
 	/// </summary>
-	public class DefensiveBarrier : ICard
+	public class DefensiveBarrier : DefensiveInstantCard, ICard
 	{
 		private readonly Wizard wizardPlayer;
 		private readonly IBoardGame gameBoard;
@@ -44,7 +44,7 @@ namespace delvers.Turns.Cards.Wizard
 			// TODO: Delete this optional use.
 		}
 
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

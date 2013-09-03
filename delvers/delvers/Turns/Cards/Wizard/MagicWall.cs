@@ -13,18 +13,17 @@ namespace delvers.Turns.Cards.Wizard
 	using delvers.Turns.Targetting;
 
 	/// <summary>
-	/// Range: 6
-	/// You gain +2 MGK for 2 turns.
-	/// TODO: Make it so wizard draws this card in Wizard.cs 4 of them
-	/// /// TODO: implement instant system that rejens in cleanup phase
+	/// You take no DMG or ongoing effects from a hit.
+	/// TODO: Make it so wizard draws this card in Wizard.cs 1 of them
+	/// TODO: implement instant system that rejens in cleanup phase
 	/// </summary>
-	public class SpellBuff : ICard
+	public class MagicWall : DefensiveInstantCard, ICard
 	{
 		private readonly Wizard wizardPlayer;
 		private readonly IBoardGame gameBoard;
 		private readonly ITargetPlayer targetPlayer;
 
-		public SpellBuff(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+		public MagicWall(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
 		{
 			this.wizardPlayer = wizardPlayer;
 			this.gameBoard = gameBoard;
@@ -35,7 +34,7 @@ namespace delvers.Turns.Cards.Wizard
 		{
 			get
 			{
-				return "Spell Buff";
+				return "Magic Wall";
 			}
 		}
 
@@ -44,7 +43,7 @@ namespace delvers.Turns.Cards.Wizard
 			// TODO: Delete this optional use.
 		}
 
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);
@@ -56,7 +55,7 @@ namespace delvers.Turns.Cards.Wizard
 
 			var monster = monsters[monsterIdx];
 
-			// You gain +2 MGK for 2 turns.
+			// You take no DMG or ongoing effects from a hit.
 			// TODO: Change this to actually do what it says.
 			var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.wizardPlayer.MagicPower;
 

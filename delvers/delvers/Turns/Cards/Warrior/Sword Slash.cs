@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// Optional
 	/// -2 Rage: +1d6 DMG to this attack
 	/// </summary>
-	public class SwordSlash : ICard
+	public class SwordSlash : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -52,7 +52,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// Deal DEF DMG to a single enemy
 		/// TODO: Implement range vs melee
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

@@ -4,7 +4,7 @@
 
 	public class Cleric : HumanPlayer
 	{
-		public Cleric(string name)
+		internal Cleric(string name)
 			: base(name)
 		{
 			this.Hp = 14;

@@ -20,13 +20,13 @@ namespace delvers.Turns.Cards.Wizard
 	/// or
 	/// -3 Mana: Deal 3d6+MGK DMG to a single enemy.
 	/// </summary>
-	public class BallofForce : ICard
+	public class BallOfForce : NonInstantCard, ICard
 	{
 		private readonly Wizard wizardPlayer;
 		private readonly IBoardGame gameBoard;
 		private readonly ITargetPlayer targetPlayer;
 
-		public BallofForce(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+		public BallOfForce(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
 		{
 			this.wizardPlayer = wizardPlayer;
 			this.gameBoard = gameBoard;
@@ -66,7 +66,7 @@ namespace delvers.Turns.Cards.Wizard
 		/// -1 Mana: Deal 1d6+MGK DMG to a single enemy.
 		/// TODO: implement Mana System
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

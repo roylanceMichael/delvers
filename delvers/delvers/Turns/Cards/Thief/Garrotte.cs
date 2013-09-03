@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Thief
 	/// -2 Energy: Add Damage equal to Player Level over 2 turns
 	/// TODO: Add this to cards Drawn, 6 of them
 	/// </summary>
-	public class Garrotte : ICard
+	public class Garrotte : NonInstantCard, ICard
 	{
 		private readonly Thief thiefPlayer;
 		private readonly IBoardGame gameBoard;
@@ -56,7 +56,7 @@ namespace delvers.Turns.Cards.Thief
 		/// TODO: Implement movement system
 		/// TODO: Implement energy system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

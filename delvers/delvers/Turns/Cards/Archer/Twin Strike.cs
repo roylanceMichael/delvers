@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Archer
 	/// -3 Energy: Add ATK DMG for both attacks
 	/// TODO: Add this to cards Drawn, 6 of them
 	/// </summary>
-	public class TwinStrike : ICard
+	public class TwinStrike : NonInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -55,7 +55,7 @@ namespace delvers.Turns.Cards.Archer
 		/// TODO: Implement range vs melee
 		/// TODO: Implement movement system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

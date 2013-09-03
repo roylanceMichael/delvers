@@ -21,5 +21,20 @@ namespace delvers.Turns.Targetting
 
 			return Utilities.Randomizer.GetRandomValue(0, players.Count);
 		}
+
+		public int TargetPlayer(IList<HumanPlayer> players)
+		{
+			if (players == null)
+			{
+				throw new ArgumentNullException("players");
+			}
+
+			if (players.Count == 0)
+			{
+				return -1;
+			}
+
+			return Utilities.Randomizer.GetRandomValue(0, players.Count);
+		}
 	}
 }

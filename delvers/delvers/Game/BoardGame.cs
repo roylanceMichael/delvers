@@ -44,6 +44,8 @@ namespace delvers.Game
 				// log end of turn statistics
 				GameLogger.LogTurnEnd(this.Players);
 
+				this.ResetInstantCardUsage();
+
 				if (this.addMoreMonstersUntilPlayersDie)
 				{
 					this.HandleMonstersAfterTurn();
@@ -55,12 +57,24 @@ namespace delvers.Game
 			return GameLogger.GameLogs();
 		}
 
+		private void ResetInstantCardUsage()
+		{
+			// reset instants for each players
+			foreach (var humanPlayer in this.GetHumanPlayers())
+			{
+				// ugh, will fix this. i hate casting
+				((HumanPlayer)humanPlayer).UsedInstantCard = false;
+			}
+		}
+
 		private void DrawCardsForHumanPlayersAtBeginningOfGame()
 		{
 			// have all players draw cards at the beginning of the game
 			foreach (var humanPlayer in this.GetHumanPlayers())
 			{
-				((HumanPlayer)humanPlayer).DrawCard(this);
+				// ugh, this indicates not a pretty design. will fix
+				humanPlayer.Initialize(this);
+				humanPlayer.DrawCard(this);
 			}
 		}
 
@@ -111,11 +125,11 @@ namespace delvers.Game
 			return playersWin;
 		}
 
-		public IEnumerable<Player> GetHumanPlayers()
+		public IEnumerable<HumanPlayer> GetHumanPlayers()
 		{
-			return 
-				this.Players
+			return this.Players
 				.Where(player => Utilities.Randomizer.InheritsImplementsOrIs(player.GetType(), typeof(HumanPlayer)))
+				.Cast<HumanPlayer>()
 				.ToList();
 		}
 

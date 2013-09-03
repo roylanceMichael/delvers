@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// TODO: Impliment instant system.
 	/// TODO: Add this to cards drawn.
 	/// </summary>
-	public class TotalDefense : ICard
+	public class TotalDefense : DefensiveInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -48,7 +48,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// Instant
 		/// Take no damage or status effects from a monster hit
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

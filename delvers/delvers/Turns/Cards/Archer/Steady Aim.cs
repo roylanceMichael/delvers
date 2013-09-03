@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Archer
 	/// -1 Energy: Add 1d8 DMG to this attack
 	/// TODO: Add this to cards Drawn, 6 of them
 	/// </summary>
-	public class SteadyAim : ICard
+	public class SteadyAim : NonInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -54,7 +54,7 @@ namespace delvers.Turns.Cards.Archer
 		/// TODO: Implement range vs melee
 		/// TODO: Implement movement system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

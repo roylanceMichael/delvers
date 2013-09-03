@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// 2 Rage: deal 2d6+ATK DMG to a single enemy
 	/// 3 Rage: deal 3d6+ATK DMG to a single enemy
 	/// </summary>
-	public class HeavyBlow : ICard
+	public class HeavyBlow : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -55,7 +55,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// TODO: Make this attack work how it's supposed to.
 		/// TODO: Implement Rage system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

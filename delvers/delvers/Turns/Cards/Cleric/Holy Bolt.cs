@@ -21,7 +21,7 @@ namespace delvers.Turns.Cards.Cleric
 	/// -1 Spirit: 1d6 + MGK to a single enemy and target player gets +2 DEF for 2 turns.
 	/// TODO: Add to cards drawn, 6 of them
 	/// </summary>
-	public class HolyBolt : ICard
+	public class HolyBolt : NonInstantCard, ICard
 	{
 		private readonly Cleric clericPlayer;
 		private readonly IBoardGame gameBoard;
@@ -67,7 +67,7 @@ namespace delvers.Turns.Cards.Cleric
 		/// TODO: implement Spirit System
 		/// TODO: Implement ranged vs. melee
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

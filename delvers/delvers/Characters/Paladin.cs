@@ -4,7 +4,7 @@
 
 	public class Paladin : HumanPlayer
 	{
-		public Paladin(string name)
+		internal Paladin(string name)
 			: base(name)
 		{
 			this.Hp = 18;

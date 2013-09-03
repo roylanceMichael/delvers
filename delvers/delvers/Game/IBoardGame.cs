@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace delvers.Game
 {
@@ -15,7 +11,7 @@ namespace delvers.Game
 
 		IEnumerable<string> StartGame();
 		bool GameEnded();
-		IEnumerable<Player> GetHumanPlayers();
+		IEnumerable<HumanPlayer> GetHumanPlayers();
 		IEnumerable<Player> GetMonsters();
 	}
 }

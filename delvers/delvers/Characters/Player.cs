@@ -9,7 +9,7 @@
 
 	public class Player
 	{
-		public Player(string name)
+		internal Player(string name)
 		{
 			this.Name = name;
 		}
@@ -33,6 +33,11 @@
 			{
 				this.Hp = this.Hp - healthToSubtract;
 			}
+		}
+
+		public virtual void TakeDamage(IBoardGame gameBoard, AttackParameters attackParameters)
+		{
+			this.TakeDamage(attackParameters.AdjustedAmount);
 		}
 
 		public virtual void TakeTurn(IBoardGame boardGame)

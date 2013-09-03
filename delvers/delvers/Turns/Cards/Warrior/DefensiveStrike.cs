@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// Optional
 	/// 2 Rage: Gain +2 DEF until the end of your next turn
 	/// </summary>
-	public class DefensiveStrike : ICard
+	public class DefensiveStrike : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -52,7 +52,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// Deal 2d6+ATK DMG to a single enemy
 		/// TODO: Implement range vs melee
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

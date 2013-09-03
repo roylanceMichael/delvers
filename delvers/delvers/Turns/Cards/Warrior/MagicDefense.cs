@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// Optional
 	/// NONE
 	/// </summary>
-	public class MagicDefense : ICard
+	public class MagicDefense : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -55,7 +55,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// TODO: Implement concept of DEF until the end of your turn
 		/// TODO: Implement until end of next turn for the + DEF
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

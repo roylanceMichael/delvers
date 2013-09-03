@@ -20,7 +20,7 @@ namespace delvers.Turns.Cards.Archer
 	/// -3 energy: Deal ATK DMG to all enemies on the board.
 	/// TODO: Add this to cards Drawn, 1 of them
 	/// </summary>
-	public class RainofArrows : ICard
+	public class RainofArrows : NonInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -61,7 +61,7 @@ namespace delvers.Turns.Cards.Archer
 		/// TODO: Implement movement system
 		/// TODO: Implement energy system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

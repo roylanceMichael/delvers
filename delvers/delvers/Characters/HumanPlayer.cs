@@ -14,7 +14,7 @@ namespace delvers.Characters
 	{
 		protected bool DoneInitialization;
 
-		public HumanPlayer(string name)
+		internal HumanPlayer(string name)
 			: base(name)
 		{
 			this.CurrentCards = new List<ICard>();
@@ -23,6 +23,7 @@ namespace delvers.Characters
 			this.DoneInitialization = false;
 		}
 
+		public bool UsedInstantCard { get; set; }
 
 		public IList<ICard> CardsToDrawFrom { get; private set; }
 
@@ -35,6 +36,25 @@ namespace delvers.Characters
 		public int MagicPower { get; set; }
 
 		public int DefensePower { get; set; }
+
+		public override void TakeDamage(IBoardGame gameBoard, AttackParameters attackParameters)
+		{
+			var humanPlayers = gameBoard.GetHumanPlayers();
+
+			// all of them will play defensive cards
+			foreach (var humanPlayer in humanPlayers)
+			{
+				var defensiveInstant = humanPlayer.CurrentCards.FirstOrDefault(card => card.IsDefensiveInstant);
+				if (defensiveInstant != null && !humanPlayer.UsedInstantCard && defensiveInstant.CanUse(attackParameters))
+				{
+					defensiveInstant.Use(attackParameters);
+					humanPlayer.CurrentCards.Remove(defensiveInstant);
+				}
+			}
+
+			// we'll take damage here
+			base.TakeDamage(gameBoard, attackParameters);
+		}
 
 		public override void TakeTurn(IBoardGame gameBoard)
 		{
@@ -52,9 +72,10 @@ namespace delvers.Characters
 
 			if (this.CurrentCards.Any())
 			{
-				// use a card
-				var randCardIdx = Randomizer.GetRandomValue(0, this.CurrentCards.Count - 1);
-				var card = this.CurrentCards[randCardIdx];
+				// use a card that's not defensive
+				var nonDefensiveInstantCards = this.CurrentCards.Where(card1 => !card1.IsDefensiveInstant).ToList();
+				var randCardIdx = Randomizer.GetRandomValue(0, nonDefensiveInstantCards.Count() - 1);
+				var card = nonDefensiveInstantCards.ElementAt(randCardIdx);
 				card.Use();
 				this.CurrentCards.RemoveAt(randCardIdx);
 			}
@@ -67,6 +88,11 @@ namespace delvers.Characters
 		public virtual void DrawCard(IBoardGame gameBoard)
 		{
 
+		}
+
+		public virtual void Initialize(IBoardGame gameBoard)
+		{
+			
 		}
 	}
 }

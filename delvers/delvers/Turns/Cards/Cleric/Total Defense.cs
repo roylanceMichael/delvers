@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Cleric
 	/// You Take no Damage or status effects from a monster hit.
 	/// TODO: Add to cards drawn, 1 of them
 	/// </summary>
-	public class TotalDefense : ICard
+	public class TotalDefense : DefensiveInstantCard, ICard
 	{
 		private readonly Cleric clericPlayer;
 		private readonly IBoardGame gameBoard;
@@ -49,7 +49,7 @@ namespace delvers.Turns.Cards.Cleric
 		/// TODO: Implement ranged vs. melee
 		/// TODO: Make this do what its supposed to do.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

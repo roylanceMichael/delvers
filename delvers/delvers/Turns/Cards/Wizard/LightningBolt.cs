@@ -14,19 +14,17 @@ namespace delvers.Turns.Cards.Wizard
 
 	/// <summary>
 	/// Range: 6
-	/// -1 Mana: Deal 1d6+MGK DMG to a single enemy.
+	/// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
 	/// or
-	/// -2 Mana: Deal 1d6+MGK DMG to all enemies in a 2x2 area.
-	/// or
-	/// -3 Mana: Deal 1d6+MGK DMG to all enemies in a 3x3 area.
+	/// -3 Mana: Deal 1d6+MGK DMG to a single enemy and all enemies adjacent to it
 	/// </summary>
-	public class FireBall : NonInstantCard, ICard
+	public class LightningBolt : NonInstantCard, ICard
 	{
 		private readonly Wizard wizardPlayer;
 		private readonly IBoardGame gameBoard;
 		private readonly ITargetPlayer targetPlayer;
 
-		public FireBall(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+		public LightningBolt(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
 		{
 			this.wizardPlayer = wizardPlayer;
 			this.gameBoard = gameBoard;
@@ -37,34 +35,41 @@ namespace delvers.Turns.Cards.Wizard
 		{
 			get
 			{
-				return "FireBall";
+				return "Lightning Bolt";
+			}
+		}
+
+		public bool IsDefensiveInstant
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+		public bool IsOffensiveInstant
+		{
+			get
+			{
+				return false;
 			}
 		}
 
 		/// <summary>
-		/// -2 Mana: Deal 1d6+MGK DMG to all enemies in a 2x2 area.
+		/// -3 Mana: Deal 1d6+MGK DMG to a single enemy and all enemies adjacent to it
+		/// TODO: Implement move system for AOE spell
 		/// TODO: implement Mana System
-		/// TODO: Implement AOE System
 		/// </summary>
 		public void OptionalUse()
 		{
 			// TODO: implement Mana system
-			// TODO: Implement movement system for AOE DMG
-		}
-
-		/// <summary>
-		/// -3 Mana: Deal 1d6+MGK DMG to all enemies in a 3x3 area.
-		/// TODO: implement Mana System
-		/// </summary>
-		public void OptionalUse2()
-		{
-			// TODO: implement rage system
 		}
 
 		/// <summary>
 		/// Range: 6
-		/// -1 Mana: Deal 1d6+MGK DMG to a single enemy.
+		/// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
 		/// TODO: implement Mana System
+		/// TODO: Implement ranged vs. melee
 		/// </summary>
 		public void Use(AttackParameters attackParameters = null)
 		{
@@ -78,7 +83,8 @@ namespace delvers.Turns.Cards.Wizard
 
 			var monster = monsters[monsterIdx];
 
-			// -1 Mana: Deal 1d6+MGK DMG to a single enemy.
+			// 0 Mana: Deal MGK DMG to a single Enemy. all enemies adjacent take 1d6 DMG.
+			// TODO: Implement movement for AOE Damage.
 			var damageTaken = this.wizardPlayer.MagicPower;
 
 			monster.TakeDamage(damageTaken);

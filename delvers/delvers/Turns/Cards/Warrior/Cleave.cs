@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// Optional
 	/// -3 Rage: Add ATK DMG for this attack
 	/// </summary>
-	public class Cleave : ICard
+	public class Cleave : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -53,7 +53,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// TODO: Implement range vs melee
 		/// TODO: Implement movement system to do AOE DMG
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

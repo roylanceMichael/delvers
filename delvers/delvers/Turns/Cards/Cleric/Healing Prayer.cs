@@ -21,7 +21,7 @@ namespace delvers.Turns.Cards.Cleric
 	/// -1 Spirit: 1d6 DMG to a single enemy and any 1 player regains HP equal to their heal value.
 	/// TODO: Add to cards drawn, 5 of them
 	/// </summary>
-	public class HealingPrayer : ICard
+	public class HealingPrayer : NonInstantCard, ICard
 	{
 		private readonly Cleric clericPlayer;
 		private readonly IBoardGame gameBoard;
@@ -67,7 +67,7 @@ namespace delvers.Turns.Cards.Cleric
 		/// TODO: implement Spirit System
 		/// TODO: Implement ranged vs. melee
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

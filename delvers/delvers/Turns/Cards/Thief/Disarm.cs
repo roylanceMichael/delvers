@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Thief
 	/// Also gain +2 DEF until the end of your next turn.
 	/// TODO: Add this to cards Drawn, 3 of them
 	/// </summary>
-	public class Disarm : ICard
+	public class Disarm : NonInstantCard, ICard
 	{
 		private readonly Thief thiefPlayer;
 		private readonly IBoardGame gameBoard;
@@ -50,7 +50,7 @@ namespace delvers.Turns.Cards.Thief
 		/// TODO: Implement movement system
 		/// TODO: Implement energy system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

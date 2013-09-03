@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Cleric
 	/// Deal 3d6 + MGK DMG to a single enemy.
 	/// TODO: Add to cards drawn, 1 of them
 	/// </summary>
-	public class SmitetheWicked : ICard
+	public class SmitetheWicked : NonInstantCard, ICard
 	{
 		private readonly Cleric clericPlayer;
 		private readonly IBoardGame gameBoard;
@@ -50,7 +50,7 @@ namespace delvers.Turns.Cards.Cleric
 		/// TODO: Implement movement system for AOE DMG
 		/// TODO: Implement movement system for AOE Heal
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

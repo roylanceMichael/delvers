@@ -14,19 +14,17 @@ namespace delvers.Turns.Cards.Wizard
 
 	/// <summary>
 	/// Range: 6
-	/// -1 Mana: Deal 1d6+MGK DMG to a single enemy.
-	/// or
-	/// -2 Mana: Deal 1d6+MGK DMG to all enemies in a 2x2 area.
-	/// or
-	/// -3 Mana: Deal 1d6+MGK DMG to all enemies in a 3x3 area.
+	/// You gain +2 MGK for 2 turns.
+	/// TODO: Make it so wizard draws this card in Wizard.cs 4 of them
+	/// /// TODO: implement instant system that rejens in cleanup phase
 	/// </summary>
-	public class FireBall : NonInstantCard, ICard
+	public class SpellBuff : OffensiveInstantCard, ICard
 	{
 		private readonly Wizard wizardPlayer;
 		private readonly IBoardGame gameBoard;
 		private readonly ITargetPlayer targetPlayer;
 
-		public FireBall(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+		public SpellBuff(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
 		{
 			this.wizardPlayer = wizardPlayer;
 			this.gameBoard = gameBoard;
@@ -37,35 +35,15 @@ namespace delvers.Turns.Cards.Wizard
 		{
 			get
 			{
-				return "FireBall";
+				return "Spell Buff";
 			}
 		}
 
-		/// <summary>
-		/// -2 Mana: Deal 1d6+MGK DMG to all enemies in a 2x2 area.
-		/// TODO: implement Mana System
-		/// TODO: Implement AOE System
-		/// </summary>
 		public void OptionalUse()
 		{
-			// TODO: implement Mana system
-			// TODO: Implement movement system for AOE DMG
+			// TODO: Delete this optional use.
 		}
 
-		/// <summary>
-		/// -3 Mana: Deal 1d6+MGK DMG to all enemies in a 3x3 area.
-		/// TODO: implement Mana System
-		/// </summary>
-		public void OptionalUse2()
-		{
-			// TODO: implement rage system
-		}
-
-		/// <summary>
-		/// Range: 6
-		/// -1 Mana: Deal 1d6+MGK DMG to a single enemy.
-		/// TODO: implement Mana System
-		/// </summary>
 		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
@@ -78,8 +56,9 @@ namespace delvers.Turns.Cards.Wizard
 
 			var monster = monsters[monsterIdx];
 
-			// -1 Mana: Deal 1d6+MGK DMG to a single enemy.
-			var damageTaken = this.wizardPlayer.MagicPower;
+			// You gain +2 MGK for 2 turns.
+			// TODO: Change this to actually do what it says.
+			var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.wizardPlayer.MagicPower;
 
 			monster.TakeDamage(damageTaken);
 

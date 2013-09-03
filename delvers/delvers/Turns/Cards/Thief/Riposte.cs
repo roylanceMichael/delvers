@@ -16,7 +16,7 @@ namespace delvers.Turns.Cards.Thief
 	/// When an enemy hits you, that enemy takes DMG equal to your ATK
 	/// TODO: Add this to cards Drawn, 2 of them
 	/// </summary>
-	public class Riposte : ICard
+	public class Riposte : DefensiveInstantCard, ICard
 	{
 		private readonly Thief thiefPlayer;
 		private readonly IBoardGame gameBoard;
@@ -50,7 +50,7 @@ namespace delvers.Turns.Cards.Thief
 		/// TODO: Implement energy system
 		/// TODO: Make this card do what it's actually supposed to.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

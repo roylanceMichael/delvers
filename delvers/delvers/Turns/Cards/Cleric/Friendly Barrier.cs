@@ -20,7 +20,7 @@ namespace delvers.Turns.Cards.Cleric
 	/// Remove all status effects from target player
 	/// TODO: Add to cards drawn, 5 of them
 	/// </summary>
-	public class FriendlyBarrier : ICard
+	public class FriendlyBarrier : DefensiveInstantCard, ICard
 	{
 		private readonly Cleric clericPlayer;
 		private readonly IBoardGame gameBoard;
@@ -54,7 +54,7 @@ namespace delvers.Turns.Cards.Cleric
 		/// TODO: implement status effects over turns
 		/// TODO: Make this do what its supposed to do.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

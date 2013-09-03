@@ -16,7 +16,7 @@ namespace delvers.Turns.Cards.Archer
 	/// Deal 1d8 + MGK DMG to X enemies, where X equals the amount of energy spent.
 	/// TODO: Add to cards drawn, 1 of them.
 	/// </summary>
-	public class MagicArrow : ICard
+	public class MagicArrow : NonInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -49,7 +49,7 @@ namespace delvers.Turns.Cards.Archer
 		/// TODO: Implement movement system
 		/// TODO: Implement energy system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

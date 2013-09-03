@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Thief
 	/// -x Energy: gain +2 ATK for this attack and X turns, where X is amount of energy spent.
 	/// TODO: Add this to cards Drawn, 3 of them
 	/// </summary>
-	public class Setup : ICard
+	public class Setup : NonInstantCard, ICard
 	{
 		private readonly Thief thiefPlayer;
 		private readonly IBoardGame gameBoard;
@@ -56,7 +56,7 @@ namespace delvers.Turns.Cards.Thief
 		/// TODO: Implement movement system
 		/// TODO: Implement energy system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

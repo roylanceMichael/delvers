@@ -12,7 +12,7 @@ namespace delvers.Characters
 
 	public class Monster : Player
 	{
-		public Monster(string name)
+		internal Monster(string name)
 			: base(name)
 		{
 			this.Hp = Utilities.Randomizer.GetRandomValue(15, 17);
@@ -26,7 +26,6 @@ namespace delvers.Characters
 			}
 
 			// hard code in specific abilities depending on the monster
-
 			var cleanupTurn = new CleanupTurn(this);
 			cleanupTurn.Cleanup();
 
@@ -41,9 +40,17 @@ namespace delvers.Characters
 
 			var humanPlayer = humanPlayers[humanToAttack];
 			var attackAmount = new StaticAmount().AttackAmount();
-			humanPlayer.TakeDamage(attackAmount);
+			var attackParameters = new AttackParameters
+				                       {
+					                       AdjustedAmount = attackAmount,
+					                       OriginalAmount = attackAmount,
+					                       PlayerAttacking = this,
+					                       PlayerBeingAttacked = humanPlayer
+				                       };
 
-			GameLogger.LogFormat("{0} gave {1} damage to {2}", this.Name, attackAmount, humanPlayer.Name);
+			humanPlayer.TakeDamage(gameBoard, attackParameters);
+
+			GameLogger.LogFormat("{0} gave {1} damage to {2}", this.Name, attackAmount, attackParameters.ReportPlayersBeingAttacked());
 		}
 	}
 }

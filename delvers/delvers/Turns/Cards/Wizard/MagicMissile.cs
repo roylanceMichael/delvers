@@ -13,17 +13,18 @@ namespace delvers.Turns.Cards.Wizard
 	using delvers.Turns.Targetting;
 
 	/// <summary>
-	/// You take no DMG or ongoing effects from a hit.
-	/// TODO: Make it so wizard draws this card in Wizard.cs 1 of them
-	/// TODO: implement instant system that rejens in cleanup phase
+	/// Range: 6
+	/// +1 Mana: Deal 1d6+MGK DMG to a single Enemy.
+	/// or
+	/// -1 Mana: 1d6+MGK to a single enemy and 1/2 that DMG to a second enemy.
 	/// </summary>
-	public class MagicWall : ICard
+	public class MagicMissile : NonInstantCard, ICard
 	{
 		private readonly Wizard wizardPlayer;
 		private readonly IBoardGame gameBoard;
 		private readonly ITargetPlayer targetPlayer;
 
-		public MagicWall(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+		public MagicMissile(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
 		{
 			this.wizardPlayer = wizardPlayer;
 			this.gameBoard = gameBoard;
@@ -34,16 +35,42 @@ namespace delvers.Turns.Cards.Wizard
 		{
 			get
 			{
-				return "Magic Wall";
+				return "Magic Missile";
 			}
 		}
 
-		public void OptionalUse()
+		public bool IsDefensiveInstant
 		{
-			// TODO: Delete this optional use.
+			get
+			{
+				return false;
+			}
 		}
 
-		public void Use()
+		public bool IsOffensiveInstant
+		{
+			get
+			{
+				return false;
+			}
+		}
+
+		/// <summary>
+		/// -1 Mana: 1d6+MGK to a single enemy and 1/2 that DMG to a second enemy.
+		/// TODO: implement Mana System
+		/// </summary>
+		public void OptionalUse()
+		{
+			// TODO: implement Mana system
+		}
+
+		/// <summary>
+		/// Range: 6
+		/// +1 Mana: Deal 1d6+MGK DMG to a single Enemy.
+		/// TODO: implement Mana System
+		/// TODO: Implement ranged vs. melee
+		/// </summary>
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);
@@ -55,8 +82,7 @@ namespace delvers.Turns.Cards.Wizard
 
 			var monster = monsters[monsterIdx];
 
-			// You take no DMG or ongoing effects from a hit.
-			// TODO: Change this to actually do what it says.
+			// +1 Mana: Deal 1d6+MGK DMG to a single Enemy
 			var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.wizardPlayer.MagicPower;
 
 			monster.TakeDamage(damageTaken);

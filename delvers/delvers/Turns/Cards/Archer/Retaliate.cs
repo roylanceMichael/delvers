@@ -16,7 +16,7 @@ namespace delvers.Turns.Cards.Archer
 	/// Play when any player is hit by an enemy.  That enemy takes DMG equal to your ATK.
 	/// TODO: Add to cards drawn, 3 of them.
 	/// </summary>
-	public class Retaliate : ICard
+	public class Retaliate : DefensiveInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -45,7 +45,7 @@ namespace delvers.Turns.Cards.Archer
 		/// <summary>
 		/// Play when any player is hit by an enemy.  That enemy takes DMG equal to your ATK.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

@@ -1,8 +1,11 @@
 ﻿namespace delvers.Builders
 {
 	using delvers.Characters;
+	using delvers.Game;
 	using delvers.Turns;
 	using delvers.Turns.Attacking;
+	using delvers.Turns.Cards.Warrior;
+	using delvers.Turns.Cards.Wizard;
 	using delvers.Turns.Targetting;
 
 	public class CharacterBuilder
@@ -15,6 +18,7 @@
 
 				case "archer":
 					player = new Archer(name);
+
 					break;
 				case "cleric":
 					player = new Cleric(name);
@@ -37,6 +41,5 @@
 			}
 			return player;
 		}
-
 	}
 }

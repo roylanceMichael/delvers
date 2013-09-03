@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Thief
 	/// Remove all status effects from yourself.
 	/// TODO: Add this to cards Drawn, 2 of them
 	/// </summary>
-	public class Perry : ICard
+	public class Perry : DefensiveInstantCard, ICard
 	{
 		private readonly Thief thiefPlayer;
 		private readonly IBoardGame gameBoard;
@@ -52,7 +52,7 @@ namespace delvers.Turns.Cards.Thief
 		/// TODO: Implement energy system
 		/// TODO: Make this card do what it's actually supposed to.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

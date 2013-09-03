@@ -16,7 +16,7 @@ namespace delvers.Turns.Cards.Thief
 	/// Take no DMG or effects from a single monster attack.
 	/// TODO: Add this to cards Drawn, 1 of them
 	/// </summary>
-	public class Dodge : ICard
+	public class Dodge : DefensiveInstantCard, ICard
 	{
 		private readonly Thief thiefPlayer;
 		private readonly IBoardGame gameBoard;
@@ -50,7 +50,7 @@ namespace delvers.Turns.Cards.Thief
 		/// TODO: Implement energy system
 		/// TODO: Make this card do what it's actually supposed to.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

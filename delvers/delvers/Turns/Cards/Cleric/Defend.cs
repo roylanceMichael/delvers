@@ -14,11 +14,10 @@ namespace delvers.Turns.Cards.Cleric
 
 	/// <summary>
 	/// Range: 6
-	/// Instant
 	/// Target player gets +2 DEF for 2 turns
 	/// TODO: Add to cards drawn, 4 of them
 	/// </summary>
-	public class Defend : ICard
+	public class Defend : NonInstantCard, ICard
 	{
 		private readonly Cleric clericPlayer;
 		private readonly IBoardGame gameBoard;
@@ -52,7 +51,7 @@ namespace delvers.Turns.Cards.Cleric
 		/// TODO: implement status effects over turns
 		/// TODO: Make this do what its supposed to do.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

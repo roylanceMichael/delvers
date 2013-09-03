@@ -16,7 +16,7 @@ namespace delvers.Turns.Cards.Thief
 	/// Draw 1 normal attack from your discard pile and play it immediately
 	/// TODO: Add this to cards Drawn, 3 of them
 	/// </summary>
-	public class Remember : ICard
+	public class Remember : NonInstantCard, ICard
 	{
 		private readonly Thief thiefPlayer;
 		private readonly IBoardGame gameBoard;
@@ -50,7 +50,7 @@ namespace delvers.Turns.Cards.Thief
 		/// TODO: Implement energy system
 		/// TODO: Make this card do what it's actually supposed to.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

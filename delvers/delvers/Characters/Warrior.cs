@@ -1,19 +1,16 @@
 ﻿namespace delvers.Characters
 {
-	using System.Collections.Generic;
 	using System.Linq;
 
 	using delvers.Game;
 	using delvers.Log;
-	using delvers.Turns;
-	using delvers.Turns.Cards;
 	using delvers.Turns.Cards.Warrior;
 	using delvers.Turns.Targetting;
 	using delvers.Utilities;
 
 	public class Warrior : HumanPlayer
 	{
-		public Warrior(string name)
+		internal Warrior(string name)
 			: base(name)
 		{
 			this.Hp = 18;
@@ -25,27 +22,14 @@
 
 		public int Rage { get; set; }
 
-		public override void TakeDamage(int healthToSubtract)
+		public override void TakeDamage(IBoardGame gameBoard, AttackParameters attackParameters)
 		{
-			if (this.Hp - healthToSubtract < 0)
-			{
-				this.Hp = 0;
-			}
-			else
-			{
-				this.Hp = this.Hp - healthToSubtract;
-			}
-
+			base.TakeDamage(gameBoard, attackParameters);
 			this.Rage += 1;
 		}
 
 		public override void DrawCard(IBoardGame gameBoard)
 		{
-			if (!this.DoneInitialization)
-			{
-				this.InitializeCards(gameBoard);
-			}
-
 			if (CurrentCards.Count > 4)
 			{
 				GameLogger.LogFormat("{0} drew no cards because they have {1} already.", this.Name, this.CurrentCards.Count);
@@ -76,7 +60,7 @@
 			}
 		}
 
-		private void InitializeCards(IBoardGame gameBoard)
+		public override void Initialize(IBoardGame gameBoard)
 		{
 			for (var i = 0; i < 5; i++)
 			{
@@ -113,7 +97,7 @@
 				var card = new IntoTheFray(this, gameBoard, new LowestHpPlayer());
 				this.CardsToDrawFrom.Add(card);
 			}
-			
+
 			for (var i = 0; i < 6; i++)
 			{
 				var card = new Cleave(this, gameBoard, new LowestHpPlayer());
@@ -138,13 +122,11 @@
 				this.CardsToDrawFrom.Add(card);
 			}
 
-			for (var i = 0; i < 6; i++)
+			for (var i = 0; i < 3; i++)
 			{
-				var card = new SwordAttack(this, gameBoard, new LowestHpPlayer());
+				var card = new ShareTheLoad(this);
 				this.CardsToDrawFrom.Add(card);
 			}
-
-			this.DoneInitialization = true;
 		}
 	}
 }

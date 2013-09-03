@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// Optional:
 	/// -1 Rage: Gain HP equal to your heal value. (heal value = 25% rounded to nearest integer)
 	/// </summary>
-	public class RejuvenatingStrike : ICard
+	public class RejuvenatingStrike : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -52,7 +52,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// Deal 1d6+ATK DMG to a single Enemy.
 		/// TODO: Implement ranged vs. melee
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

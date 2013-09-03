@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// where X=Rage spent.
 	/// Also, gain 2 DEF for every 2 Rage spent in this way
 	/// </summary>
-	public class IntoTheFray : ICard
+	public class IntoTheFray : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -57,7 +57,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// TODO: Make this so it does what it's supposed to.
 		/// TODO: Implement Rage system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

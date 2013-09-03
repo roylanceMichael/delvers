@@ -16,7 +16,7 @@ namespace delvers.Turns.Cards.Archer
 	/// Play when you are hit by an enemy monster.  You take no DMG or status effects from that hit
 	/// TODO: Add to cards drawn, 1 of them.
 	/// </summary>
-	public class TotalDefense : ICard
+	public class TotalDefense : DefensiveInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -45,7 +45,7 @@ namespace delvers.Turns.Cards.Archer
 		/// <summary>
 		/// Play when you are hit by an enemy monster.  You take no DMG or status effects from that hit
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

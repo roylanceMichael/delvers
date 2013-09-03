@@ -13,18 +13,18 @@ namespace delvers.Turns.Cards.Wizard
     using delvers.Turns.Targetting;
 
     /// <summary>
-    /// Range:  Adjacent
-    /// +1 Mana: Deal 1d6 DMG to all enemies in a 3x3 area adjacent to you
-    /// or
-    /// -1 Mana: Deal 1d6+MGK DMG to all enemies in a 3x3 area adjacent to you
+    /// Range: 6
+    /// Deal 1d6+MGK DMG to a single Enemy.
+    /// Optional:
+    /// -1 Mana: Gain HP equal to your heal value. (heal value = 25% rounded to nearest integer)
     /// </summary>
-    public class DragonFlame : ICard
+    public class DrainLife : NonInstantCard, ICard
     {
         private readonly Wizard wizardPlayer;
         private readonly IBoardGame gameBoard;
         private readonly ITargetPlayer targetPlayer;
 
-        public DragonFlame(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
+        public DrainLife(Wizard wizardPlayer, IBoardGame gameBoard, ITargetPlayer targetPlayer)
         {
             this.wizardPlayer = wizardPlayer;
             this.gameBoard = gameBoard;
@@ -35,13 +35,12 @@ namespace delvers.Turns.Cards.Wizard
         {
             get
             {
-                return "Dragon Flame";
+                return "Drain Life";
             }
         }
 
         /// <summary>
-        /// -1 Mana: Deal 1d6+MGK DMG to all enemies in a 3x3 area adjacent to you
-        /// TODO: implement Mana System
+        /// 1 Mana: Gain HP equal to your heal value
         /// </summary>
         public void OptionalUse()
         {
@@ -49,12 +48,11 @@ namespace delvers.Turns.Cards.Wizard
         }
 
         /// <summary>
-        /// Range: Adjacent
-        /// +1 Mana: Deal 1d6 DMG to all enemies in a 3x3 area adjacent to you
-        /// TODO: implement Mana System
+        /// Range: 6
+        /// Deal 1d6+MGK DMG to a single Enemy.
         /// TODO: Implement ranged vs. melee
         /// </summary>
-        public void Use()
+        public void Use(AttackParameters attackParameters = null)
         {
             var monsters = this.gameBoard.GetMonsters().ToList();
             var monsterIdx = this.targetPlayer.TargetPlayer(monsters);
@@ -66,10 +64,8 @@ namespace delvers.Turns.Cards.Wizard
 
             var monster = monsters[monsterIdx];
 
-            // +1 Mana: Deal 1d6 DMG to all enemies in a 3x3 area adjacent to you
-            // TODO: Implement Mana System
-            // TODO: Implement ranged system so this attack can be Area of Effect and deal DMG to multiple enemies
-            var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6);
+            // Deal 1d6+MGK DMG to a single Enemy
+            var damageTaken = Utilities.Randomizer.GetRandomValue(1, 6) + this.wizardPlayer.MagicPower;
 
             monster.TakeDamage(damageTaken);
 

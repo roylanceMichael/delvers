@@ -6,6 +6,7 @@ namespace delvers.tests.Players
 	using System.Collections.Generic;
 	using System.Linq;
 
+	using delvers.Builders;
 	using delvers.Characters;
 	using delvers.Game;
 
@@ -15,10 +16,11 @@ namespace delvers.tests.Players
 		private static BoardGame SetupBoardGame(Player playerToTest, int monsterNum = 1)
 		{
 			var players = new List<Player> { playerToTest };
-			
+			var builder = new CharacterBuilder();
+
 			for (var i = 0; i < monsterNum; i++)
 			{
-				var monster = new Monster("Monster" + i);
+				var monster = builder.BuildCharacter("monster", "Monster" + i);
 				players.Add(monster);
 			}
 			
@@ -31,7 +33,8 @@ namespace delvers.tests.Players
 		public void AttackCorrectly()
 		{
 			// arrange
-			var humanPlayer = new Cleric("Somebody");
+			var builder = new CharacterBuilder();
+			var humanPlayer = builder.BuildCharacter("cleric", "Someone");
 
 			// act
 
@@ -43,7 +46,8 @@ namespace delvers.tests.Players
 		public void AttackCorrectly1()
 		{
 			// arrange
-			var humanPlayer = new Cleric("Somebody");
+			var builder = new CharacterBuilder();
+			var humanPlayer = builder.BuildCharacter("cleric", "SomePlayer1");
 			var boardGame = SetupBoardGame(humanPlayer);
 			var monster = boardGame.GetMonsters().First();
 			var monsterHp = monster.Hp;

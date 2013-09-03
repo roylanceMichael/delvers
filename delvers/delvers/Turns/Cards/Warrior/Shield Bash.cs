@@ -17,7 +17,7 @@ namespace delvers.Turns.Cards.Warrior
 	/// Optional
 	/// -3 Rage: +2 Defense for this attack until the end of your next turn.
 	/// </summary>
-	public class ShieldBash : ICard
+	public class ShieldBash : NonInstantCard, ICard
 	{
 		private readonly Warrior warriorPlayer;
 		private readonly IBoardGame gameBoard;
@@ -52,7 +52,7 @@ namespace delvers.Turns.Cards.Warrior
 		/// Deal 1d6 + DEF DMG to a single Enemy
 		/// TODO: Implement range vs melee
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

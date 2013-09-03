@@ -16,7 +16,7 @@ namespace delvers.Turns.Cards.Archer
 	/// Draw a normal attack card from your discard pile and play it immediately.
 	/// TODO: Add to cards drawn, 3 of them.
 	/// </summary>
-	public class Recall : ICard
+	public class Recall : NonInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -45,7 +45,7 @@ namespace delvers.Turns.Cards.Archer
 		/// <summary>
 		/// Draw a normal attack card from your discard pile and play it immediately.
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

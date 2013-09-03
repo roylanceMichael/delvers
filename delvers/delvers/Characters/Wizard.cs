@@ -13,7 +13,7 @@
 
 	public class Wizard : HumanPlayer
 	{
-		public Wizard(string name)
+		internal Wizard(string name)
 			: base(name)
 		{
 			this.Hp = 12;
@@ -24,11 +24,6 @@
 
 		public override void DrawCard(IBoardGame gameBoard)
 		{
-			if (!this.DoneInitialization)
-			{
-				this.InitializeCards(gameBoard);
-			}
-
 			if (CurrentCards.Count > 4)
 			{
 				GameLogger.LogFormat("{0} drew no cards because they have {1} already.", this.Name, this.CurrentCards.Count);
@@ -62,32 +57,32 @@
 			}
 		}
 
-		private void InitializeCards(IBoardGame gameBoard)
+		public override void Initialize(IBoardGame gameBoard)
 		{
 			for (var i = 0; i < 4; i++)
 			{
 				var card = new DrainLife(this, gameBoard, new LowestHpPlayer());
 				this.CardsToDrawFrom.Add(card);
 			}
-            
-            for (var i = 0; i < 6; i++)
-            {
-                var card = new MagicMissile(this, gameBoard, new LowestHpPlayer());
-                this.CardsToDrawFrom.Add(card);
-            }
 
-            for (var i = 0; i < 6; i++)
-            {
-                var card = new DragonFlame(this, gameBoard, new LowestHpPlayer());
-                this.CardsToDrawFrom.Add(card);
-            }
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new MagicMissile(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
 
-            for (var i = 0; i < 3; i++)
-            {
-                var card = new FrostBolt(this, gameBoard, new LowestHpPlayer());
-                this.CardsToDrawFrom.Add(card);
-            }
-			
+			for (var i = 0; i < 6; i++)
+			{
+				var card = new DragonFlame(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
+			for (var i = 0; i < 3; i++)
+			{
+				var card = new FrostBolt(this, gameBoard, new LowestHpPlayer());
+				this.CardsToDrawFrom.Add(card);
+			}
+
 			for (var i = 0; i < 6; i++)
 			{
 				var card = new SurefireShot(this, gameBoard, new LowestHpPlayer());
@@ -114,11 +109,9 @@
 
 			for (var i = 0; i < 1; i++)
 			{
-				var card = new BallofForce(this, gameBoard, new LowestHpPlayer());
+				var card = new BallOfForce(this, gameBoard, new LowestHpPlayer());
 				this.CardsToDrawFrom.Add(card);
 			}
-
-			this.DoneInitialization = true;
 		}
 	}
 }

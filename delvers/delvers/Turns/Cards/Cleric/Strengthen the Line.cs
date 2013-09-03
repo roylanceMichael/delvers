@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Cleric
 	/// Target player gets +2 DEF for turns = amount of spirit spent
 	/// TODO: Add to cards drawn, 3 of them
 	/// </summary>
-	public class StrengthentheLine : ICard
+	public class StrengthentheLine : NonInstantCard, ICard
 	{
 		private readonly Cleric clericPlayer;
 		private readonly IBoardGame gameBoard;
@@ -51,7 +51,7 @@ namespace delvers.Turns.Cards.Cleric
 		/// TODO: Implement ranged vs. melee
 		/// TODO: Implement spirit system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);

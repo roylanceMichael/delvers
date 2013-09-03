@@ -18,7 +18,7 @@ namespace delvers.Turns.Cards.Archer
 	/// -1 Energy: add ATK to this DMG
 	/// TODO: Add this to cards Drawn, 6 of them
 	/// </summary>
-	public class PerfectShot : ICard
+	public class PerfectShot : NonInstantCard, ICard
 	{
 		private readonly Archer archerPlayer;
 		private readonly IBoardGame gameBoard;
@@ -55,7 +55,7 @@ namespace delvers.Turns.Cards.Archer
 		/// TODO: Implement movement system
 		/// TODO: Implement energy system
 		/// </summary>
-		public void Use()
+		public void Use(AttackParameters attackParameters = null)
 		{
 			var monsters = this.gameBoard.GetMonsters().ToList();
 			var monsterIdx = this.targetPlayer.TargetPlayer(monsters);
